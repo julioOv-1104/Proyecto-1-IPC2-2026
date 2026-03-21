@@ -24,7 +24,7 @@ public class UsuarioServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException {//doPost para poder hacer el login de los usuarios
 
         ObjectMapper objectMapper = new ObjectMapper();
 
