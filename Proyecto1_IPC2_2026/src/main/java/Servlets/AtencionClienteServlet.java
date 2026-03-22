@@ -1,7 +1,7 @@
 package Servlets;
 
-import DAOs.ClienteDAO;
-import Modelos.Cliente;
+import DAOs.*;
+import Modelos.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,19 +9,61 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Map;
+import java.util.ArrayList;
 
 @WebServlet(name = "AtencionClienteServlet", urlPatterns = {"/AtencionClienteServlet"})
 public class AtencionClienteServlet extends HttpServlet {
 
     private ClienteDAO clienteDao = new ClienteDAO();
+    private PagoDAO pagoDao = new PagoDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        ObjectMapper om = new ObjectMapper();
+        response.setContentType("application/json; charset=UTF-8");
+
+        ArrayList<Cliente> clientes = new ArrayList<>();
+
+        clientes = clienteDao.verTodosClientes();
+
+        if (clientes.isEmpty()) {
+            //no hay clientes
+            response.getWriter().print("{\"status\":\"error\",\"mensaje\":\"No hay clientes\"}");
+            
+        } else {
+
+            String json = om.writeValueAsString(clientes);
+            response.getWriter().print(json);
+        }
+
     }
+    
+    
+      @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException { //doPost paracrear una reserva 
+
+        ObjectMapper om = new ObjectMapper();
+        response.setContentType("application/json; charset=UTF-8");
+
+        Pago entrante = om.readValue(request.getInputStream(), Pago.class);
+
+        Pago nuevo = pagoDao.registrarPago(entrante);
+
+        if (nuevo == null) {
+
+            response.getWriter().print("{\"status\":\"error\",\"mensaje\":\"Ocurrio un error al registrar el pago\"}");
+
+        } else {
+            String json = om.writeValueAsString(nuevo);
+            response.getWriter().print(json);
+        }
+
+    }
+    
+    
 
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response)
@@ -81,7 +123,7 @@ public class AtencionClienteServlet extends HttpServlet {
         }
 
     }
-    
+
     private void editarCliente(HttpServletRequest request, HttpServletResponse response,
             ObjectMapper om) {
 

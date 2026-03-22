@@ -1,6 +1,7 @@
 
 package Modelos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.sql.Date;
 
@@ -8,6 +9,8 @@ import java.sql.Date;
 public class Cliente {
  
     private String dpi, nombre_cliente, telefono, email, nacionalidad;
+    
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date fecha_nacimiento;
 
     public Cliente(String dpi, String nombre_cliente,  Date fecha_nacimiento, String telefono, String email, String nacionalidad) {
