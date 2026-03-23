@@ -142,7 +142,7 @@ public class AtencionClienteServlet extends HttpServlet {
             }
 
         } catch (Exception e) {
-            System.out.println("ERROR AL REGISTRAR CLIENTE DESDE SERVLET " + e.getMessage());
+            System.out.println("ERROR AL EDITAR CLIENTE DESDE SERVLET " + e.getMessage());
         }
 
     }

@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "UsuarioServlet", urlPatterns = {"/UsuarioServlet"})
 public class UsuarioServlet extends HttpServlet {
@@ -19,6 +20,20 @@ public class UsuarioServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        ObjectMapper om = new ObjectMapper();
+        response.setContentType("application/json; charset=UTF-8");
+
+        ArrayList<Usuario> usuarios = usuarioDao.obtenerUsuarios();
+
+        if (usuarios.isEmpty()) {
+            response.getWriter().print("{\"status\":\"error\",\"mensaje\":\"Ocurrio un error con obtener usuarios\"}");
+            
+        } else {
+            String json = om.writeValueAsString(usuarios);
+            response.getWriter().print(json);
+
+        }
 
     }
 

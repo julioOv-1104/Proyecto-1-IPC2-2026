@@ -20,7 +20,7 @@ public class HistorialAtencionClienteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException { //doPost paracrear una reserva 
+            throws ServletException, IOException { //doGet para las consultas
 
         ObjectMapper om = new ObjectMapper();
         response.setContentType("application/json; charset=UTF-8");
@@ -34,7 +34,7 @@ public class HistorialAtencionClienteServlet extends HttpServlet {
 
         try {
             switch (accionRecibida) {
-                case "reservaciones": //Consultar el disponibles de reservaciones de un cliente
+                case "reservaciones": 
                     mostrarReservacionesCliente(request, response, om);
                     break;
 

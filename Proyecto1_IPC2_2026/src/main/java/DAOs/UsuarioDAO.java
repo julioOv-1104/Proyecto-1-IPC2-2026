@@ -1,12 +1,13 @@
 
 package DAOs;
 
-import Modelos.Usuario;
+import Modelos.*;
 import Utilidades.ConexionDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UsuarioDAO {
     
@@ -37,6 +38,40 @@ public class UsuarioDAO {
         }
         return user;
     }
+    
+    
+    
+    public ArrayList<Usuario> obtenerUsuarios() {
+
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+        
+        try (Connection conn = conexion.conectar()) {
+
+            String sql = "SELECT id_usuario, nombre_usuario, rol FROM usuario";
+            PreparedStatement stm = conn.prepareStatement(sql);
+
+            ResultSet rs = stm.executeQuery();
+            
+            while (rs.next()) {
+                
+                Usuario nuevo = new Usuario();
+                nuevo.setId_usuario(rs.getInt("id_usuario"));
+                nuevo.setNombre_usuario("nombre_usuario");
+                nuevo.setRol(rs.getInt("rol"));
+                
+                usuarios.add(nuevo);
+            }
+
+           
+
+        } catch (SQLException e) {
+            System.out.println("ERROR AL OBTENER USUARIOS DESDE DAO" + e.getMessage());
+        }
+
+         return usuarios;
+    }
+    
+    
     
     public boolean obtenerClientePorDPI(String dpi) {
 
