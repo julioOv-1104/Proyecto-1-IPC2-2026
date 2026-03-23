@@ -1,8 +1,7 @@
 package Servlets;
 
-import DAOs.HistorialReservacionesDAO;
-import Modelos.Cliente;
-import Modelos.HistorialReservaciones;
+import DAOs.HistorialAtencionClienteDAO;
+import Modelos.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,14 +9,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Map;
 
 @WebServlet(name = "HistorialAtencionClienteServlet", urlPatterns = {"/HistorialAtencionClienteServlet"})
 public class HistorialAtencionClienteServlet extends HttpServlet {
 
-   private HistorialReservacionesDAO historialDao = new HistorialReservacionesDAO();
-    
-    
+    private HistorialAtencionClienteDAO historialDao = new HistorialAtencionClienteDAO();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException { //doPost paracrear una reserva 
@@ -34,14 +34,20 @@ public class HistorialAtencionClienteServlet extends HttpServlet {
 
         try {
             switch (accionRecibida) {
-                case "reservaciones": //Consultar el historial de reservaciones de un cliente
-                    MostrarReservacionesCliente(request, response, om);
+                case "reservaciones": //Consultar el disponibles de reservaciones de un cliente
+                    mostrarReservacionesCliente(request, response, om);
                     break;
 
                 case "pagos":
-                    // cancelarReserva(request, response, om);
+                    mostrarPagosReservaciones(request, response, om);
                     break;
 
+                case "disponibles":
+                    mostrarReservasDisponibles(request, response, om);
+                    break;
+                case "reservasHoy":
+                    mostrarReservasHoy(request, response, om);
+                    break;
                 default:
 
                     response.getWriter().print("{\"error\": \"Acción no válida\"}");
@@ -53,16 +59,16 @@ public class HistorialAtencionClienteServlet extends HttpServlet {
 
     }
 
-    private void MostrarReservacionesCliente(HttpServletRequest request, HttpServletResponse response, ObjectMapper om) {
+    private void mostrarReservacionesCliente(HttpServletRequest request, HttpServletResponse response, ObjectMapper om) {
 
         try {
             response.setContentType("application/json; charset=UTF-8");
 
             ArrayList<HistorialReservaciones> historial = new ArrayList<>();
-            
+
             Cliente entrante = om.readValue(request.getInputStream(), Cliente.class);
 
-            historial = historialDao.obtenerTodasReservas(entrante.getDpi());
+            historial = historialDao.obtenerTodasReservasCliente(entrante.getDpi());
 
             if (historial.isEmpty()) {
                 //no hay reservaciones
@@ -77,5 +83,83 @@ public class HistorialAtencionClienteServlet extends HttpServlet {
         }
 
     }
+
+    private void mostrarPagosReservaciones(HttpServletRequest request, HttpServletResponse response, ObjectMapper om) {
+
+        try {
+            response.setContentType("application/json; charset=UTF-8");
+
+            ArrayList<HistorialPagosReserva> historial = new ArrayList<>();
+
+            Reserva entrante = om.readValue(request.getInputStream(), Reserva.class);
+
+            historial = historialDao.obtenerPagosDeReserva(entrante.getNumero_reserva());
+
+            if (historial.isEmpty()) {
+                //no hay pagos
+                response.getWriter().print("{\"status\":\"error\",\"mensaje\":\"No hay pagos realizados\"}");
+
+            } else {
+
+                String json = om.writeValueAsString(historial);
+                response.getWriter().print(json);
+            }
+        } catch (Exception e) {
+        }
+
+    }
+
+    private void mostrarReservasDisponibles(HttpServletRequest request, HttpServletResponse response, ObjectMapper om) {
+
+        try {
+            response.setContentType("application/json; charset=UTF-8");
+
+            ArrayList<ReservacionesFechaDestino> disponibles = new ArrayList<>();
+
+            Map<String, Object> datos = om.readValue(request.getInputStream(), Map.class);
+
+            Date fecha = (Date) datos.get("fecha");
+            String destino = (String) datos.get("destino");
+
+
+            disponibles = historialDao.obtenerReservacionesDisponibles(fecha, destino);
+
+            if (disponibles.isEmpty()) {
+                //no hay reservas
+                response.getWriter().print("{\"status\":\"error\",\"mensaje\":\"No hay reservas disponibles\"}");
+
+            } else {
+
+                String json = om.writeValueAsString(disponibles);
+                response.getWriter().print(json);
+            }
+        } catch (Exception e) {
+        }
+
+    }
+
+    private void mostrarReservasHoy(HttpServletRequest request, HttpServletResponse response, ObjectMapper om) {
+        
+        try {
+            response.setContentType("application/json; charset=UTF-8");
+
+            ArrayList<Reserva> historial = new ArrayList<>();
+
+            historial = historialDao.obtenerReservacionesDelDia();
+
+            if (historial.isEmpty()) {
+                //no hay reservas hoy
+                response.getWriter().print("{\"status\":\"error\",\"mensaje\":\"No hay reservas realizadas hoy\"}");
+
+            } else {
+
+                String json = om.writeValueAsString(historial);
+                response.getWriter().print(json);
+            }
+        } catch (Exception e) {
+        }
+    
+    }
+    
 
 }

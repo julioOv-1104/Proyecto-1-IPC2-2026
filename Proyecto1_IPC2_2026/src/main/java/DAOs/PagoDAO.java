@@ -29,6 +29,9 @@ public class PagoDAO {
 
             stm.executeUpdate();
 
+            /*
+            FALTA AGREGAR QUE DEVUELVA EL ID DEL PAGO
+             */
             return nuevo;
 
         } catch (SQLException e) {
@@ -36,6 +39,42 @@ public class PagoDAO {
         }
 
         return null;
+    }
+
+    public void obtenerPago(int id) {
+
+        try (Connection conn = conexion.conectar()) {
+
+            String sql = "SELECT "
+                    + "    id_pago,"
+                    + "    numero_reserva, "
+                    + "    monto, "
+                    + "    fecha, "
+                    + "    estado, "
+                    + "    CASE metodo_pago "
+                    + "        WHEN 1 THEN 'Efectivo' "
+                    + "        WHEN 2 THEN 'Tarjeta' "
+                    + "        WHEN 3 THEN 'Transferencia' "
+                    + "    END AS metodo "
+                    + "FROM Pago WHERE id_pago = ?";
+            
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setInt(1, id);
+
+            ResultSet rs = stm.executeQuery();
+
+            if (rs.next()) {
+
+                int id_pago = rs.getInt("id_pago");
+                System.out.println("id del pago: " + id_pago);
+                
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println("ERROR AL OBTENER COMPROBANTE DE PAGO DESDE DAO " + e.getMessage());
+        }
+
     }
 
     public int obtenerTotalPagado(Reserva reserva) {
@@ -51,7 +90,7 @@ public class PagoDAO {
             if (rs.next()) {
 
                 int reembolso = rs.getInt("total_pagado");
-                System.out.println("REEMBOLSO EN DAO: "+reembolso);
+                System.out.println("REEMBOLSO EN DAO: " + reembolso);
                 return reembolso;
 
             }
@@ -59,12 +98,12 @@ public class PagoDAO {
         } catch (SQLException e) {
             System.out.println("ERROR AL OBTENER REEMBOLSO DESDE DAO " + e.getMessage());
         }
-        
+
         return 0;
 
     }
-    
-     public boolean cancelarPago(Reserva reserva, double reembolso ) {
+
+    public boolean cancelarPago(Reserva reserva, double reembolso) {
 
         try (Connection conn = conexion.conectar()) {
 
@@ -73,18 +112,18 @@ public class PagoDAO {
             PreparedStatement stm = conn.prepareStatement(sql);
             stm.setString(1, reserva.getNumero_reserva());
             stm.executeUpdate();
-            
+
             return true;
 
         } catch (SQLException e) {
-                System.out.println("ERROR AL CANCELAR RESERVA DESDE DAO " + e.getMessage());
+            System.out.println("ERROR AL CANCELAR RESERVA DESDE DAO " + e.getMessage());
         }
 
         return false;
-        
+
     }
-     
-     public boolean registarCancelacion(Reserva reserva, double reembolso ) {
+
+    public boolean registarCancelacion(Reserva reserva, double reembolso) {
 
         try (Connection conn = conexion.conectar()) {
 
@@ -94,16 +133,15 @@ public class PagoDAO {
             stm.setString(1, reserva.getNumero_reserva());
             stm.setDouble(2, reembolso);
             stm.executeUpdate();
-            
+
             return true;
-            
 
         } catch (SQLException e) {
-                System.out.println("ERROR AL REGISTRAR CANCELACION RESERVA DESDE DAO " + e.getMessage());
+            System.out.println("ERROR AL REGISTRAR CANCELACION RESERVA DESDE DAO " + e.getMessage());
         }
 
         return false;
-        
+
     }
 
 }

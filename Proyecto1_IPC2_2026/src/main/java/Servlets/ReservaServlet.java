@@ -128,7 +128,6 @@ public class ReservaServlet extends HttpServlet {
         String numero_reserva = (String) datos.get("numero_reserva");
         String dpi = (String) datos.get("dpi");
 
-        System.out.println("DPI: " + dpi + " NUMERO: " + numero_reserva);
 
         if (reservaDao.vincularReservaCliente(numero_reserva, dpi)) {
 
