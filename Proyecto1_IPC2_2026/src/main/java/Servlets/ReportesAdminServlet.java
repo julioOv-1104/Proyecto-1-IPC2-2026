@@ -55,7 +55,7 @@ public class ReportesAdminServlet extends HttpServlet {
                     break;
 
                 case "masVentas":
-                    System.out.println("entro");
+                    
                     mostrarAgenteVentas(request, response, om, fecha1, fecha2);
                     break;
 

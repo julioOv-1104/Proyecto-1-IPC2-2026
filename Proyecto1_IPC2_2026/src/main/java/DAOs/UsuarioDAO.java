@@ -74,7 +74,7 @@ public class UsuarioDAO {
 
                 Usuario nuevo = new Usuario();
                 nuevo.setId_usuario(rs.getInt("id_usuario"));
-                nuevo.setNombre_usuario("nombre_usuario");
+                nuevo.setNombre_usuario(rs.getString("nombre_usuario"));
                 nuevo.setRol(rs.getInt("rol"));
 
                 usuarios.add(nuevo);

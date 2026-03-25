@@ -2,7 +2,7 @@ package Servlets;
 
 import DAOs.*;
 import Modelos.*;
-import Servicios.CancelacionReserva;
+import Servicios.CancelacionReservaService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -17,7 +17,7 @@ import java.util.Map;
 public class ReservaServlet extends HttpServlet {
 
     private ReservaDAO reservaDao = new ReservaDAO();
-    private CancelacionReserva cancelacion = new CancelacionReserva();
+    private CancelacionReservaService cancelacion = new CancelacionReservaService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -102,13 +102,13 @@ public class ReservaServlet extends HttpServlet {
 
             Reserva aCancelar = om.readValue(request.getInputStream(), Reserva.class);
 
-            if (cancelacion.cancelarReserva(aCancelar)) {
+            if (cancelacion.cancelarReserva(aCancelar)) {//verifica que se pueda cancelar y calcula el reembolso
 
                 String json = om.writeValueAsString(aCancelar);
                 response.getWriter().print(json);
 
             } else {
-                response.getWriter().print("{\"status\":\"error\",\"mensaje\":\"Ocurrio un error al registrar la reserva\"}");
+                response.getWriter().print("{\"status\":\"error\",\"mensaje\":\"Ocurrio un error al cancelar la reserva\"}");
 
             }
         } catch (Exception e) {

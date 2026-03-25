@@ -19,7 +19,7 @@ public class Reserva {
     private int id_usuario;
     private int cantidad_personas;
     private double costo_total;
-    private String estado = "PENDIENTE";
+    private String estado = "PENDIENTE";//es pendiente por defecto
     
     private Cliente[] pasajeros;
 

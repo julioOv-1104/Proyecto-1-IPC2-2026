@@ -6,7 +6,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class CancelacionReserva {
+public class CancelacionReservaService {
 
     private PagoDAO pagoDao = new PagoDAO();
 
@@ -24,7 +24,7 @@ public class CancelacionReserva {
 
             long restantes = (faltanSieteDiasOMas(reserva.getFecha_viaje()));//obtiene tiempo de diferencia
 
-            reembolso = pagoDao.obtenerTotalPagado(reserva);//obtiene cuanto ha pagado el cliente en total
+            reembolso = pagoDao.obtenerTotalPagadoReembolso(reserva);//obtiene cuanto ha pagado el cliente en total
 
             return calcularReembolso(reserva, restantes, reembolso);
 
@@ -65,7 +65,7 @@ public class CancelacionReserva {
 
         }
 
-        if (pagoDao.cancelarPago(reserva, reembolso) && pagoDao.registarCancelacion(reserva, reembolso)) {
+        if (pagoDao.cancelarReserva(reserva, reembolso) && pagoDao.registarCancelacion(reserva, reembolso)) {
 
             System.out.println("PAGADO: " + pagado);
             System.out.println("REEMBOLSO: " + reembolso);

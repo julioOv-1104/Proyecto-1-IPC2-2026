@@ -2,6 +2,7 @@ package Servlets;
 
 import DAOs.*;
 import Modelos.*;
+import Servicios.RegistrarPagoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,6 +17,7 @@ public class AtencionClienteServlet extends HttpServlet {
 
     private ClienteDAO clienteDao = new ClienteDAO();
     private PagoDAO pagoDao = new PagoDAO();
+    private RegistrarPagoService servicioPago = new RegistrarPagoService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -43,14 +45,14 @@ public class AtencionClienteServlet extends HttpServlet {
     
       @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException { //doPost paracrear una reserva 
+            throws ServletException, IOException { //doPost paracrear un pago 
 
         ObjectMapper om = new ObjectMapper();
         response.setContentType("application/json; charset=UTF-8");
 
         Pago entrante = om.readValue(request.getInputStream(), Pago.class);
 
-        Pago nuevo = pagoDao.registrarPago(entrante);
+        Pago nuevo = servicioPago.pagarReserva(entrante);
 
         if (nuevo == null) {
 
