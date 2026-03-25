@@ -1,19 +1,18 @@
-
 package Modelos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Usuario {
-    
+
     private int id_usuario;
     private String nombre_usuario;
     private String password;
     private int rol;
+    private boolean activo = true;
 
     public Usuario() {
     }
-    
 
     public Usuario(int id_usuario, String nombre_usuario, String password, int rol) {
         this.id_usuario = id_usuario;
@@ -22,8 +21,6 @@ public class Usuario {
         this.rol = rol;
     }
 
-    
-    
     public int getId_usuario() {
         return id_usuario;
     }
@@ -55,7 +52,13 @@ public class Usuario {
     public void setRol(int rol) {
         this.rol = rol;
     }
-    
-    
-    
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
 }

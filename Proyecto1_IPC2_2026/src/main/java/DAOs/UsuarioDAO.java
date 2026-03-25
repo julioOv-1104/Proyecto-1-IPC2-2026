@@ -1,4 +1,3 @@
-
 package DAOs;
 
 import Modelos.*;
@@ -10,9 +9,30 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UsuarioDAO {
-    
+
     ConexionDB conexion = new ConexionDB();
-    
+
+    public Usuario registrarUsuario(Usuario nuevo) {
+
+        try (Connection conn = conexion.conectar()) {
+
+            String sql = "INSERT INTO usuario (nombre_usuario, password, rol) VALUES (?, ?, ?)";
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, nuevo.getNombre_usuario());
+            stm.setString(2, nuevo.getPassword());
+            stm.setInt(3, nuevo.getRol());
+
+            stm.executeUpdate();
+
+            return nuevo;
+
+        } catch (SQLException e) {
+            System.out.println("ERROR AL REGISTRAR USUARIO DESDE DAO " + e.getMessage());
+        }
+
+        return null;
+    }
+
     public Usuario login(String nombre_usuario, String password) {
 
         String nombre = nombre_usuario.trim();//le quita los espacios sobrantes
@@ -38,41 +58,35 @@ public class UsuarioDAO {
         }
         return user;
     }
-    
-    
-    
+
     public ArrayList<Usuario> obtenerUsuarios() {
 
         ArrayList<Usuario> usuarios = new ArrayList<>();
-        
+
         try (Connection conn = conexion.conectar()) {
 
             String sql = "SELECT id_usuario, nombre_usuario, rol FROM usuario";
             PreparedStatement stm = conn.prepareStatement(sql);
 
             ResultSet rs = stm.executeQuery();
-            
+
             while (rs.next()) {
-                
+
                 Usuario nuevo = new Usuario();
                 nuevo.setId_usuario(rs.getInt("id_usuario"));
                 nuevo.setNombre_usuario("nombre_usuario");
                 nuevo.setRol(rs.getInt("rol"));
-                
+
                 usuarios.add(nuevo);
             }
-
-           
 
         } catch (SQLException e) {
             System.out.println("ERROR AL OBTENER USUARIOS DESDE DAO" + e.getMessage());
         }
 
-         return usuarios;
+        return usuarios;
     }
-    
-    
-    
+
     public boolean obtenerClientePorDPI(String dpi) {
 
         try (Connection conn = conexion.conectar()) {
@@ -80,11 +94,11 @@ public class UsuarioDAO {
             String sql = "SELECT 1 FROM cliente WHERE dpi = ?";
             PreparedStatement stm = conn.prepareStatement(sql);
             stm.setString(1, dpi);
-            
+
             ResultSet rs = stm.executeQuery();
 
             if (rs.next()) {
-                
+
                 return true;
 
             }
@@ -97,5 +111,24 @@ public class UsuarioDAO {
 
         return false;
     }
-    
+
+    public boolean cancelarActivarUsuario(Usuario user) {
+
+        try (Connection conn = conexion.conectar()) {
+
+            String sql = "UPDATE usuario SET activo = NOT activo WHERE nombre_usuario = ?";
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, user.getNombre_usuario());
+
+            stm.executeUpdate();
+
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("ERROR AL CANCELAR/DESACTIVAR USUARIO DESDE DAO " + e.getMessage());
+        }
+
+        return false;
+    }
+
 }

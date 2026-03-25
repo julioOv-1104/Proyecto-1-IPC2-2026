@@ -16,8 +16,8 @@ public class PaqueteDAO {
         
         try (Connection conn = conexion.conectar()) {
             
-            String sql = "(nombre_paquete, id_destino, duracion, descripcion, precio_publico, capacidad, estado) "
-                    + "VALUES (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO paquete (nombre_paquete, id_destino, duracion, descripcion, precio_publico, capacidad) "
+                    + "VALUES (?,?,?,?,?,?)";
             PreparedStatement stm = conn.prepareStatement(sql);
             stm.setString(1, nuevo.getNombre_paquete());
             stm.setInt(2, nuevo.getId_destino());
@@ -25,7 +25,7 @@ public class PaqueteDAO {
             stm.setString(4, nuevo.getDescripcion());
             stm.setDouble(5, nuevo.getPrecio_publico());
             stm.setInt(6, nuevo.getCapacidad());
-            stm.setBoolean(7, nuevo.isEstado());
+            
             
             stm.executeUpdate();
             
@@ -97,7 +97,7 @@ public class PaqueteDAO {
         
         try (Connection conn = conexion.conectar()) {
             
-            String sql = " UPDATE paquete SET estado = NOT estado WHERE id_paquete = ?";
+            String sql = "UPDATE paquete SET estado = NOT estado WHERE id_paquete = ?";
             PreparedStatement stm = conn.prepareStatement(sql);
             stm.setInt(1, aDesactivar.getId_paquete());
             
