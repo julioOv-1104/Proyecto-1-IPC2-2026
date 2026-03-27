@@ -6,10 +6,18 @@ public class Proveedor {
     private String nombre_proveedor; 
     private int id_tipo_servicio; 
     private String pais; 
-    private String contacto; 
+    private String contacto = ""; 
 
     public Proveedor() {
     }
+
+    public Proveedor(String nombre_proveedor, int id_tipo_servicio, String pais) {
+        this.nombre_proveedor = nombre_proveedor;
+        this.id_tipo_servicio = id_tipo_servicio;
+        this.pais = pais;
+    }
+    
+    
 
     public Proveedor(int id_proveedor, String nombre_proveedor, int id_tipo_servicio, String pais, String contacto) {
         this.id_proveedor = id_proveedor;

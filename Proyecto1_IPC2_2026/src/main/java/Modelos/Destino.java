@@ -7,10 +7,19 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class Destino {
  
     private int id_destino;
-    private String nombre_destino, pais, descripcion, mejor_epoca, imagen;
+    private String nombre_destino, pais, descripcion,imagen;
+    private String mejor_epoca = "";
 
     public Destino() {
     }
+
+    public Destino(String nombre_destino, String pais, String descripcion) {
+        this.nombre_destino = nombre_destino;
+        this.pais = pais;
+        this.descripcion = descripcion;
+    }
+    
+    
 
     public Destino(int id_destino, String nombre_destino, String pais, String descripcion, String mejor_epoca) {
         this.id_destino = id_destino;

@@ -10,13 +10,20 @@ public class Pago {
     private double monto;
     private int metodo_pago;
     
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date fecha;
-    private String estado;
+    private String estado = "PARCIAL";
 
     public Pago() {
     }
 
+     public Pago(String numero_reserva, double monto, int metodo_pago, Date fecha) {
+        this.numero_reserva = numero_reserva;
+        this.monto = monto;
+        this.metodo_pago = metodo_pago;
+        this.fecha = fecha;
+    }
+    
     public Pago(String numero_reserva, double monto, int metodo_pago, Date fecha, String estado) {
         this.numero_reserva = numero_reserva;
         this.monto = monto;

@@ -6,7 +6,7 @@ public class Paquete {
     private String nombre_paquete;
     private int id_destino;
     private int duracion;
-    private String descripcion;
+    private String descripcion = "";
     private double precio_publico;
     private int capacidad;
     private boolean estado = true;
@@ -14,6 +14,16 @@ public class Paquete {
     public Paquete() {
     }
 
+    public Paquete(String nombre_paquete, int id_destino, int duracion, double precio_publico, int capacidad) {
+        this.nombre_paquete = nombre_paquete;
+        this.id_destino = id_destino;
+        this.duracion = duracion;
+        this.precio_publico = precio_publico;
+        this.capacidad = capacidad;
+    }
+
+    
+    
     public Paquete(int id_paquete, String nombre_paquete, int id_destino, int duracion, String descripcion, double precio_publico, int capacidad) {
         this.id_paquete = id_paquete;
         this.nombre_paquete = nombre_paquete;

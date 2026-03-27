@@ -10,7 +10,7 @@ public class HistorialReservaciones {
    private String numero_reserva;
    private String paquete;
    
-   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
    private Date fecha_viaje;
    private String estado;
    private double costo_total;

@@ -12,7 +12,7 @@ public class ProveedorDAO {
 
     ConexionDB conexion = new ConexionDB();
     
-    public Proveedor registrarDestino(Proveedor nuevo) {
+    public Proveedor registrarProveedor(Proveedor nuevo) {
 
         try (Connection conn = conexion.conectar()) {
 

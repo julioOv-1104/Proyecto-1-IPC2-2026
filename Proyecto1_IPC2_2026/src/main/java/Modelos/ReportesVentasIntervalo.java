@@ -10,7 +10,7 @@ public class ReportesVentasIntervalo {
     private String agente;
     private double costoTotal;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date fecha_creacion;
 
     public ReportesVentasIntervalo(String paquete, String pasajero, String agente, double costoTotal, Date fecha_creacion) {

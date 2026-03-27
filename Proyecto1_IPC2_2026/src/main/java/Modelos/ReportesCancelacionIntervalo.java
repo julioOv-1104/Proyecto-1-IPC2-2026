@@ -7,7 +7,7 @@ public class ReportesCancelacionIntervalo {
 
     private String numero_reserva;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date fecha_cancelacion;
     private double monto_reembolsado;
     private double perdida;

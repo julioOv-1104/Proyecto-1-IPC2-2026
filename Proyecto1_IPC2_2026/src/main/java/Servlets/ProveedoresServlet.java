@@ -46,7 +46,7 @@ public class ProveedoresServlet extends HttpServlet {
 
         Proveedor entrante = om.readValue(request.getInputStream(), Proveedor.class);
 
-        Proveedor nuevo = proveedorDao.registrarDestino(entrante);
+        Proveedor nuevo = proveedorDao.registrarProveedor(entrante);
         
         if (nuevo == null) {
 

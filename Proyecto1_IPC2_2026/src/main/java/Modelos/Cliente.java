@@ -10,7 +10,7 @@ public class Cliente {
  
     private String dpi, nombre_cliente, telefono, email, nacionalidad;
     
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date fecha_nacimiento;
 
     public Cliente(String dpi, String nombre_cliente,  Date fecha_nacimiento, String telefono, String email, String nacionalidad) {

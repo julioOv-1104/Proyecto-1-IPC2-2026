@@ -19,7 +19,7 @@ public class ReportesAdminServlet extends HttpServlet {
     private ReportesAdminDAO adminDao = new ReportesAdminDAO();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException { // doGet para ver los reportes del administrador
 
         ObjectMapper om = new ObjectMapper();
@@ -242,6 +242,76 @@ public class ReportesAdminServlet extends HttpServlet {
             response.getWriter().print(json);
 
         }
+    }
+     
+     
+     @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException { // doPost para exportar los reportes en PDF
+
+        ObjectMapper om = new ObjectMapper();
+        response.setContentType("application/json; charset=UTF-8");
+
+        Map<String, Object> datos = om.readValue(request.getInputStream(), Map.class);
+
+        String sFecha1 = (String) datos.get("fecha1");
+        java.sql.Date fecha1 = java.sql.Date.valueOf(sFecha1);
+        String sFecha2 = (String) datos.get("fecha2");
+        java.sql.Date fecha2 = java.sql.Date.valueOf(sFecha2);//obtiene las fechas para los intervalos
+
+        String accionRecibida = request.getParameter("accion");
+
+        if (accionRecibida == null) {
+            response.getWriter().print("{\"error\": \"Acción no especificada\"}");
+            return;
+        }
+
+        try {
+            switch (accionRecibida) {
+
+                case "ventasIntervalo":
+                    mostrarVentasIntervalo(request, response, om, fecha1, fecha2);
+                    break;
+
+                case "cancelacionesIntervalo":
+                    mostrarCancelacionesIntervalo(request, response, om, fecha1, fecha2);
+                    break;
+
+                case "gananciaIntervalo":
+                    mostrarGananciasIntervalo(request, response, om, fecha1, fecha2);
+                    break;
+
+                case "masVentas":
+                    
+                    mostrarAgenteVentas(request, response, om, fecha1, fecha2);
+                    break;
+
+                case "masGanancias":
+                    mostrarAgenteGanancias(request, response, om, fecha1, fecha2);
+                    break;
+
+                case "paqueteMasVendido":
+                    
+                    mostrarPaqueteMasVendido(request, response, om, fecha1, fecha2);
+                    break;
+
+                case "paqueteMenosVendido":
+                    mostrarPaqueteMenosVendido(request, response, om, fecha1, fecha2);
+                    break;
+
+                case "ocupacionDestino":
+                    mostrarOcupacionDestino(request, response, om, fecha1, fecha2);
+                    break;
+
+                default:
+
+                    response.getWriter().print("{\"error\": \"Acción no válida\"}");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
     }
      
 }

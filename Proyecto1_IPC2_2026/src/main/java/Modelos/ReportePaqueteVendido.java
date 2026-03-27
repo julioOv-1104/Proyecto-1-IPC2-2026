@@ -8,7 +8,7 @@ public class ReportePaqueteVendido {
     private String paquete;
     private String numero_reserva;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date fecha_reserva;
     private double costo_total;
 

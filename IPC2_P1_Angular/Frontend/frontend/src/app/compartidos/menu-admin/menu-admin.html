@@ -1,0 +1,12 @@
+<div class="menu-container" [class.open]="isOpen">
+  <button class="close-btn" (click)="toggleMenu()">X</button>
+  <ul>
+    <li routerLink="/reportes-admin">Ver Reportes</li>
+    <li routerLink="/crear-paquetes">Crear Paquetes</li>
+    <li routerLink="/registro">Crear Usuarios</li>
+    <li routerLink="/cancelar-usuarios"> Cancelar Usuarios</li>
+    <li routerLink="/admin">Importar Archivos</li>
+    <li (click)="logout()">Cerrar Sesión</li>
+  </ul>
+</div>
+<button class="open-btn" (click)="toggleMenu()">Opciones</button>

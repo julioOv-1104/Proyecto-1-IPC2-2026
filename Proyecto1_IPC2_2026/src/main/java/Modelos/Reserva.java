@@ -1,4 +1,3 @@
-
 package Modelos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -6,25 +5,25 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.sql.Date;
 
 public class Reserva {
-    
+
     private String numero_reserva;
-    
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date fecha_creacion;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date fecha_viaje;
-    
-    
+
     private int id_paquete;
     private int id_usuario;
     private int cantidad_personas;
     private double costo_total;
     private String estado = "PENDIENTE";//es pendiente por defecto
-    
+
     private Cliente[] pasajeros;
 
     public Reserva() {
     }
+
 
     public Reserva(String numero_reserva, Date fecha_creacion, Date fecha_viaje, int id_paquete, int id_usuario, int cantidad_personas, double costo_total, String estado) {
         this.numero_reserva = numero_reserva;
@@ -35,7 +34,7 @@ public class Reserva {
         this.cantidad_personas = cantidad_personas;
         this.costo_total = costo_total;
         this.estado = estado;
-        
+
         this.pasajeros = new Cliente[cantidad_personas];
     }
 
@@ -102,6 +101,5 @@ public class Reserva {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
-        
+
 }
