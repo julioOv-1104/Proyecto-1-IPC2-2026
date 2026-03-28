@@ -1,0 +1,27 @@
+<div class="reporte-ventas-wrapper">
+  <section class="reporte-ventas-card">
+    <header class="reporte-ventas-header">
+      <h2>Reporte de Reservaciones por Destino</h2>
+      <p>Reservaciones por destino en un intervalo de tiempo.</p>
+    </header>
+
+    <div class="reporte-ventas-scroll">
+      <table class="reporte-ventas-table">
+        <thead>
+          <tr>
+            <th>Nombre Destino</th>
+            <th>Cantidad Reservaciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let r of reportes">
+            <td>{{ r.nombre_destino }}</td>
+            <td>{{ r.cantidad_reservaciones }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+

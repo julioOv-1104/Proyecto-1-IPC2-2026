@@ -1,0 +1,28 @@
+<div class="reporte-ventas-wrapper">
+  <section class="reporte-ventas-card">
+    <header class="reporte-ventas-header">
+      <h2>Reporte de Ganancias</h2>
+      <p>Ganancias en un intervalo de tiempo.</p>
+    </header>
+
+    <div class="reporte-ventas-scroll">
+      <table class="reporte-ventas-table">
+        <thead>
+          <tr>
+            <th>Ganancias Brutas</th>
+            <th>Total Reembolsos</th>
+            <th>Ganancias Netas</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let r of reportes">
+            <td>{{ r.ganancias_brutas | currency:'USD':'symbol':'1.2-2' }}</td>
+            <td>{{ r.total_reembolsos | currency:'USD':'symbol':'1.2-2' }}</td>
+            <td>{{ r.ganancias_neta | currency:'USD':'symbol':'1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

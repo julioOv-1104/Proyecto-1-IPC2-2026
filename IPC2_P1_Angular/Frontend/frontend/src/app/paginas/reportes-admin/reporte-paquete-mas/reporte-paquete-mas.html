@@ -1,0 +1,30 @@
+<div class="reporte-ventas-wrapper">
+  <section class="reporte-ventas-card">
+    <header class="reporte-ventas-header">
+      <h2>Reporte de Paquetes Más Vendidos</h2>
+      <p>Paquetes más vendidos en un intervalo de tiempo.</p>
+    </header>
+
+    <div class="reporte-ventas-scroll">
+      <table class="reporte-ventas-table">
+        <thead>
+          <tr>
+            <th>Paquete</th>
+            <th>Número de Reservas</th>
+            <th>Fecha de Reserva</th>
+            <th>Costo Total</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let r of reportes">
+            <td>{{ r.paquete }}</td>
+            <td>{{ r.numero_reserva }}</td>
+            <td>{{ r.fecha_reserva }}</td>
+            <td>{{ r.costo_total | currency:'USD':'symbol':'1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

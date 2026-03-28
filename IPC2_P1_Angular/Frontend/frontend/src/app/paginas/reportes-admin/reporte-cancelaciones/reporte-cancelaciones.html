@@ -1,0 +1,31 @@
+<div class="reporte-ventas-wrapper">
+  <section class="reporte-ventas-card">
+    <header class="reporte-ventas-header">
+      <h2>Reporte de Cancelaciones</h2>
+      <p>Cancelaciones en un intervalo de tiempo.</p>
+    </header>
+
+    <div class="reporte-ventas-scroll">
+      <table class="reporte-ventas-table">
+        <thead>
+          <tr>
+            <th>Numero Reserva</th>
+            <th>Fecha Cancelacion</th>
+            <th>Monto Reembolsado</th>
+            <th>Perdida</th>
+            
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let r of reportes">
+            <td>{{ r.numero_reserva }}</td>
+            <td>{{ r.fecha_cancelacion }}</td>
+            <td>{{ r.monto_reembolsado | currency:'USD':'symbol':'1.2-2' }}</td>
+            <td>{{ r.perdida | currency:'USD':'symbol':'1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

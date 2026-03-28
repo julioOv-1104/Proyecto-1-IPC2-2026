@@ -1,4 +1,4 @@
-export interface ReporteVentas {
+export interface ReporteVentasModel {
 
     paquete: string;
     pasajero: string;
