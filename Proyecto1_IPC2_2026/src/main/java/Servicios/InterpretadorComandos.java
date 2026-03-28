@@ -7,6 +7,8 @@ import java.text.SimpleDateFormat;
 public class InterpretadorComandos {
 
     public void procesarUsuario(String linea) {
+        
+        System.out.println("ENTRA AQUI");
 
         String datos = linea.substring(
                 linea.indexOf("(") + 1,

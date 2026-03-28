@@ -1,10 +1,11 @@
 <div class="formulario-carga">
   <h2>Cargar Archivo</h2>
   
-  <form>
+  <form (submit)="cargarArchivo()" enctype="multipart/form-data">
     <div class="grupo-formulario">
       <label for="archivo">Seleccionar archivo .txt:</label>
       <input 
+      (change)="onFileSelected($event)"
         type="file" 
         id="archivo" 
         name="archivo"

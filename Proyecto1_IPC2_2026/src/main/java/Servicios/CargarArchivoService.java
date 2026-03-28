@@ -10,16 +10,19 @@ public class CargarArchivoService {
     
     public void procesarArchivo(InputStream archivo){
         
+        System.out.println("PROCESANDO LINEA");
+        
         try (BufferedReader br = new BufferedReader(new InputStreamReader(archivo))) {
 
             String linea;
 
-            while ((linea = br.readLine()) != null) {
+            while ((linea = br.readLine()) != null) {//lee cada linea del archivo
+                System.out.println("LIENA: "+linea);
                 procesarLinea(linea);
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("ERROR AL LEER LINEA DEL ARCHIVO "+e.getMessage());
         }
     }
     
