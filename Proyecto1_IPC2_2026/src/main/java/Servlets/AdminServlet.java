@@ -35,8 +35,8 @@ public class AdminServlet extends HttpServlet {
                     registrarUsuario(request, response, om);
                     break;
 
-                case "activar/cancelar":
-                    cancelarActivar(request, response, om);
+                case "editar":
+                    editarUsuario(request, response, om);
                     break;
 
                 default:
@@ -74,7 +74,7 @@ public class AdminServlet extends HttpServlet {
 
     }
 
-    private void cancelarActivar(HttpServletRequest request, HttpServletResponse response, ObjectMapper om) {
+    private void editarUsuario(HttpServletRequest request, HttpServletResponse response, ObjectMapper om) {
         
         try {
             response.setContentType("application/json; charset=UTF-8");

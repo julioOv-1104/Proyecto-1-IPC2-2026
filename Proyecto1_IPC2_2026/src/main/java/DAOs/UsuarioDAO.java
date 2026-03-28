@@ -116,16 +116,18 @@ public class UsuarioDAO {
 
         try (Connection conn = conexion.conectar()) {
 
-            String sql = "UPDATE usuario SET activo = NOT activo WHERE nombre_usuario = ?";
+            String sql = "UPDATE usuario SET activo = ?, rol = ? WHERE nombre_usuario = ?";
             PreparedStatement stm = conn.prepareStatement(sql);
-            stm.setString(1, user.getNombre_usuario());
+            stm.setBoolean(1, user.isActivo());
+            stm.setInt(2, user.getRol());
+            stm.setString(3, user.getNombre_usuario());
 
             stm.executeUpdate();
 
             return true;
 
         } catch (SQLException e) {
-            System.out.println("ERROR AL CANCELAR/DESACTIVAR USUARIO DESDE DAO " + e.getMessage());
+            System.out.println("ERROR AL EDITAR USUARIO DESDE DAO " + e.getMessage());
         }
 
         return false;

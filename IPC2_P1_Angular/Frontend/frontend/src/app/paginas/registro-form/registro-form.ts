@@ -29,6 +29,11 @@ export class RegistroForm {
       return;
     }
 
+    if (this.rol < 1 || this.rol > 3) {
+      this.mensajeError = 'El rol debe ser un número entre 1 y 3.';
+      return;//por si elige un rol fuera del rango permitido.
+    }
+
     const nuevoUsuario = {
       nombre_usuario: this.nombre_usuario,
       password: this.password,

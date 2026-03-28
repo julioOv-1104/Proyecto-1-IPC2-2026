@@ -4,7 +4,7 @@ import { VistaAdmin } from './paginas/vista-admin/vista-admin';
 import { VistaAtencionCliente } from './paginas/vista-atencion-cliente/vista-atencion-cliente';
 import { VistaOperaciones } from './paginas/vista-operaciones/vista-operaciones';
 import { ReportesAdmin } from './paginas/reportes-admin/reportes-admin';
-import { CancelarUsuarios } from './paginas/cancelar-usuarios/cancelar-usuarios';
+import { EditarUsuarios } from './paginas/editarr-usuarios/editar-usuarios';
 import { CrearPaquetes } from './paginas/crear-paquetes/crear-paquetes';
 import { RegistroForm } from './paginas/registro-form/registro-form';
 
@@ -13,7 +13,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginForm },
   { path: 'admin', component: VistaAdmin },
   {path: 'reportes-admin', component: ReportesAdmin},
-  {path: 'cancelar-usuarios', component: CancelarUsuarios},
+  {path: 'editar-usuarios', component: EditarUsuarios},
   {path: 'crear-paquetes', component: CrearPaquetes},
   {path: 'registro', component: RegistroForm},
   { path: 'atencion-cliente', component: VistaAtencionCliente },

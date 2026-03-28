@@ -1,2 +1,82 @@
-<p>crear-paquetes works!</p>
+<div class="crear-paquetes-page">
+    <section class="destinos-card">
+        <header class="destinos-header">
+            <h2>Destinos y su ID</h2>
+            <p>Selecciona un destino válido para tu nuevo paquete.</p>
+        </header>
+
+        <div class="destinos-table-wrapper">
+            <table class="destinos-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Destino</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let d of destinos">
+                        <td>{{ d.id_destino }}</td>
+                        <td>{{ d.nombre_destino }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="form-card">
+
+
+
+        <header class="form-header">
+            <h2>Registrar Nuevo Paquete de Viajes</h2>
+            <p>Completa los datos y guarda tu paquete con estilo.</p>
+        </header>
+
+        <form (ngSubmit)="registrarPaquete()" class="paquete-form">
+            <div class="form-grid">
+                <div class="field">
+                    <label for="id_destino">ID Destino</label>
+                    <input [(ngModel)]="id_destino" type="number" name="id_destino" id="id_destino" required>
+                </div>
+
+                <div class="field">
+                    <label for="nombre_paquete">Nombre del Paquete</label>
+                    <input [(ngModel)]="nombre_paquete" type="text" name="nombre_paquete" id="nombre_paquete" required>
+                </div>
+
+                <div class="field">
+                    <label for="precio_publico">Precio público</label>
+                    <input [(ngModel)]="precio_publico" type="number" name="precio_publico" id="precio_publico"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label for="capacidad">Capacidad</label>
+                    <input [(ngModel)]="capacidad" type="number" name="capacidad" id="capacidad" required>
+                </div>
+
+                <div class="field">
+                    <label for="duracion">Duración (días)</label>
+                    <input [(ngModel)]="duracion" type="number" name="duracion" id="duracion" required>
+                </div>
+
+            </div>
+
+            <div class="field-full">
+                <label for="descripcion">Descripción</label>
+                <textarea [(ngModel)]="descripcion" name="descripcion" id="descripcion" rows="3"></textarea>
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="btn-submit">Registrar Paquete</button>
+            </div>
+
+        </form>
+        <div *ngIf="mensajeError" style="color: rgb(255, 0, 0);">
+            {{ mensajeError }}
+        </div>
+    </section>
+</div>
+
 <app-menu-admin></app-menu-admin>

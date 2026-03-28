@@ -1,0 +1,76 @@
+<div class="crear-paquetes-page">
+
+    <section class="destinos-card">
+        <header class="destinos-header">
+            <h2>Usuarios y su Rol</h2>
+            <p>1: Atencion al Cliente, 2: Operaciones, 3: Administrador.
+            </p>
+        </header>
+
+        <div class="destinos-table-wrapper">
+            <table class="destinos-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Rol</th>
+                        <th>Activo</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let u of usuarios">
+                        <td>{{ u.nombre_usuario }}</td>
+                        <td>{{ u.rol }}</td>
+                        <td>{{ u.activo === true ? 'Si' : 'No'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="form-card">
+
+
+
+        <header class="form-header">
+            <h2>Editar Usuario</h2>
+            <p>Ingrese el nombre del usuario y el o los campos a modificar.</p>
+        </header>
+
+        <form class="paquete-form" (ngSubmit)="editarUsuario()">
+            <div class="form-grid">
+                <div class="field">
+                    <label for="id_destino">Nombre Usuario</label>
+                    <input [(ngModel)]="nombre_usuario" type="text" name="nombre_usuario" id="nombre_usuario" required>
+                </div>
+
+                <div class="field">
+                    <label for="nombre_paquete">Rol</label>
+                    <input [(ngModel)]="rol" type="number" name="rol" id="rol" required>
+                </div>
+
+                <div class="field">
+                    <label for="estado_usuario">Estado del Usuario</label>
+                    <select [(ngModel)]="estado" name="estado_usuario" id="estado_usuario" class="form-control" required placeholder="Activo">
+                        <option [value]="true">Activo</option>
+                        <option [value]="false">Inactivo</option>
+                        
+                    </select>
+                </div>
+
+
+            </div>
+
+
+            <div class="actions">
+                <button type="submit" class="btn-submit">Editar Usuario</button>
+            </div>
+
+        </form>
+
+    </section>
+
+
+</div>
+
+<app-menu-admin></app-menu-admin>
