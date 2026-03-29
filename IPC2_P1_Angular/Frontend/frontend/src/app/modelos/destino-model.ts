@@ -4,5 +4,5 @@ export interface DestinoModel {
     nombre_destino: string;
     pais: string;
     descripcion: string;
-    mejore_epoca: string;
+    mejor_epoca: string;
 }

@@ -20,11 +20,12 @@ public class Usuario {
         this.rol = rol;
     }
 
-    public Usuario(int id_usuario, String nombre_usuario, String password, int rol) {
+    public Usuario(int id_usuario, String nombre_usuario, String password, int rol, boolean activo) {
         this.id_usuario = id_usuario;
         this.nombre_usuario = nombre_usuario;
         this.password = password;
         this.rol = rol;
+        this.activo = activo;
     }
 
     public int getId_usuario() {

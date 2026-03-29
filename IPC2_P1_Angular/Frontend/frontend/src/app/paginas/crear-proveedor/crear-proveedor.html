@@ -1,0 +1,121 @@
+<div class="crear-paquetes-page">
+    <h1>Registra Proveedor</h1>
+    <section class="destinos-card">
+        <header class="destinos-header">
+            <h2>Tipos de Servicio</h2>
+            <p>Tipos de servicio disponibles en el sistema.</p>
+        </header>
+
+        <div class="destinos-table-wrapper">
+            <table class="destinos-table">
+                <thead>
+                    <tr>
+                        <th>ID tipo Servicio</th>
+                        <th>Nombre </th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Aerolinea</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Hotel</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Tour</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Traslado</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Otro</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+ <section class="destinos-card">
+        <header class="destinos-header">
+            <h2>Proveedores</h2>
+            <p>Proveedores existentes en el sistema.</p>
+        </header>
+
+        <div class="destinos-table-wrapper">
+            <table class="destinos-table">
+                <thead>
+                    <tr>
+                        <th>Nombre Proveedor</th>
+                        <th>ID Tipo Servicio</th>
+                        <th>Pais</th>
+                        <th>Contacto</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let p of proveedores">
+                        <td>{{ p.nombre_proveedor }}</td>
+                        <td>{{ p.id_tipo_servicio }}</td>
+                        <td>{{ p.pais }}</td>
+                        <td>{{ p.contacto }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+
+    <section class="form-card">
+        <header class="form-header">
+            <h2>Registra Proveedor</h2>
+            <p>Completa los datos y guarda los cambios.</p>
+        </header>
+
+        <form (ngSubmit)="registrarProveedor()" class=" paquete-form">
+            <div class="form-grid">
+
+                <div class="field">
+                    <label for="id_destino">Nombre Proveedor</label>
+                    <input [(ngModel)]="nombre_proveedor" type="text" name="id_destino" id="id_destino" required>
+                </div>
+
+                <div class="field">
+                    <label for="id_destino">ID Tipo Servicio</label>
+                    <input [(ngModel)]="id_tipo_servicio" type="number" name="id_tipo_servicio" id="id_tipo_servicio"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label for="nombre_paquete">Pais</label>
+                    <input [(ngModel)]="pais" type="text" name="pais" id="pais" required>
+                </div>
+
+                <div class="field">
+                    <label for="precio_publico">Contacto</label>
+                    <input [(ngModel)]="contacto" type="text" name="contacto" id="contacto" required>
+                </div>
+
+
+            </div>
+
+
+
+            <div class="actions">
+                <button type="submit" class="btn-submit">Registrar Proveedor</button>
+            </div>
+
+        </form>
+        <div *ngIf="mensajeError" style="color: rgb(255, 0, 0);">
+            {{ mensajeError }}
+        </div>
+    </section>
+</div>
+<app-menu-operaciones></app-menu-operaciones>

@@ -50,7 +50,7 @@ public class ProveedoresServlet extends HttpServlet {
         
         if (nuevo == null) {
 
-                response.getWriter().print("{\"status\":\"error\",\"mensaje\":\"Ocurrio un error al registrar el paquete\"}");
+                response.getWriter().print("{\"status\":\"error\",\"mensaje\":\"Ocurrio un error al registrar el proveedor\"}");
 
             } else {
                 String json = om.writeValueAsString(nuevo);

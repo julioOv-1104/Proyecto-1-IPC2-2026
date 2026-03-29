@@ -1,0 +1,47 @@
+
+<div class="crear-paquetes-page">
+<h1>Registrar Nuevo Destino</h1>
+    <section class="form-card">
+        <header class="form-header">
+            <h2>Registrar Nuevo Destino</h2>
+            <p>Completa los datos y guarda tu destino.</p>
+        </header>
+
+        <form  (ngSubmit)="registrarDestino()" class="paquete-form">
+            <div class="form-grid">
+            
+                <div class="field">
+                    <label for="precio_publico">Nombre Destino</label>
+                    <input  [(ngModel)]="nombre_destino" type="text" name="nombre_destino" id="nombre_destino"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label for="capacidad">País</label>
+                    <input  [(ngModel)]="pais" type="text" name="capacidad" id="capacidad" required>
+                </div>
+
+                <div class="field">
+                    <label for="duracion">Mejor época</label>
+                    <input  [(ngModel)]="mejor_epoca" type="text" name="duracion" id="duracion" required>
+                </div>
+
+            </div>
+
+            <div class="field-full">
+                <label for="descripcion">Descripción</label>
+                <textarea  [(ngModel)]="descripcion" name="descripcion" id="descripcion" rows="3"></textarea>
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="btn-submit">Registrar Destino</button>
+            </div>
+
+        </form>
+        <div *ngIf="mensajeError" style="color: rgb(255, 0, 0);">
+            {{ mensajeError }}
+        </div>
+    </section>
+</div>
+
+<app-menu-operaciones></app-menu-operaciones>

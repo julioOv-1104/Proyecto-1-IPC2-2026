@@ -1,1 +1,88 @@
-<p>vista-operaciones works!</p>
+
+<div class="crear-paquetes-page">
+
+    <h1>Editar Destino</h1>
+
+    <section class="destinos-card">
+        <header class="destinos-header">
+            <h2>Destinos existentes</h2>
+        </header>
+
+        <div class="destinos-table-wrapper">
+            <table class="destinos-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Pais</th>
+                        <th>Descripción</th>
+                        <th>Mejor Época</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let d of destinos">
+                        <td>{{ d.id_destino }}</td>
+                        <td>{{ d.nombre_destino }}</td>
+                        <td>{{ d.pais }}</td>
+                        <td>{{ d.descripcion }}</td>
+                        <td>{{ d.mejor_epoca }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="form-card">
+
+
+
+        <header class="form-header">
+            <h2>Editar Destino</h2>
+            <p>Completa los datos y guarda los cambios.</p>
+        </header>
+
+        <form  class="paquete-form">
+            <div class="form-grid">
+                <div class="field">
+                    <label for="id_destino">ID Destino</label>
+                    <input [(ngModel)]="id_destino" type="number" name="id_destino" id="id_destino" required>
+                </div>
+
+                <div class="field">
+                    <label for="nombre_paquete">Nombre del Destino</label>
+                    <input [(ngModel)]="nombre_destino" type="text" name="nombre_destino" id="nombre_destino" required>
+                </div>
+
+                <div class="field">
+                    <label for="precio_publico">Pais</label>
+                    <input [(ngModel)]="pais" type="text" name="pais" id="pais"
+                        required>
+                </div>
+
+
+                <div class="field">
+                    <label for="duracion">Mejor Época</label>
+                    <input [(ngModel)]="mejor_epoca" type="text" name="mejor_epoca" id="mejor_epoca" required>
+                </div>
+
+            </div>
+
+            <div class="field-full">
+                <label for="descripcion">Descripción</label>
+                <textarea [(ngModel)]="descripcion" name="descripcion" id="descripcion" rows="3"></textarea>
+            </div>
+
+            <div class="actions">
+                <button (click)="editarDestino()" class="btn-submit">Editar Destino</button>
+            </div>
+
+        </form>
+        <div *ngIf="mensajeError" style="color: rgb(255, 0, 0);">
+            {{ mensajeError }}
+        </div>
+    </section>
+</div>
+
+
+<app-menu-operaciones></app-menu-operaciones>

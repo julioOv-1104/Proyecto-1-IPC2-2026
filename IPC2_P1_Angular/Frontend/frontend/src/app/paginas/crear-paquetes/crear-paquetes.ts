@@ -3,22 +3,26 @@ import { MenuAdmin } from '../../compartidos/menu-admin/menu-admin';
 import { DestinoModel } from '../../modelos/destino-model';
 import { DestinoService } from '../../servicios/destino.service';
 import { PaqueteService } from '../../servicios/paquete.service';
+import { UsuarioService } from '../../servicios/usuario.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PaqueteModel } from '../../modelos/paquete-model';
+import { MenuOperaciones } from '../../compartidos/menu-operaciones/menu-operaciones';
 
 @Component({
   selector: 'app-crear-paquetes',
-  imports: [MenuAdmin, CommonModule, FormsModule],
+  imports: [MenuAdmin, CommonModule, FormsModule, MenuOperaciones],
   templateUrl: './crear-paquetes.html',
   styleUrl: './crear-paquetes.css',
 })
 export class CrearPaquetes {
 
-  constructor(private destinoService: DestinoService, private paqueteService: PaqueteService) { }
+  constructor(private destinoService: DestinoService, private paqueteService: PaqueteService,
+    private usuarioService: UsuarioService) { }
 
   destinos: DestinoModel[] = [];
   mensajeError: string | null = null;
+  rol: number = 0;
 
   nombre_paquete: string = '';
   id_destino: number = 0;
@@ -30,6 +34,11 @@ export class CrearPaquetes {
   ngOnInit() {
 
     this.obtenerDestinos();
+
+    this.usuarioService.obtenerUsuarios().subscribe(data => {
+      const usuarioActual = JSON.parse(sessionStorage.getItem('usuario') || '{}');
+      this.rol = usuarioActual.rol;
+    });
 
   }
 

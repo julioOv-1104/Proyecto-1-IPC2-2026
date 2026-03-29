@@ -50,7 +50,7 @@ public class UsuarioDAO {
             ResultSet rs = stm.executeQuery();
 
             if (rs.next()) {
-                user = new Usuario(rs.getInt("id_usuario"), nombre, contra, rs.getInt("rol"));
+                user = new Usuario(rs.getInt("id_usuario"), nombre, contra, rs.getInt("rol"), rs.getBoolean("activo"));
             }
 
         } catch (Exception e) {

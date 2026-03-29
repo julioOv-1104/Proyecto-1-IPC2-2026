@@ -52,6 +52,11 @@ export class LoginForm {
 
         console.log('rol del usuario:', response.rol);
 
+        if(response.activo === false){
+          this.mensajeError = 'Usuario inactivo. No puede acceder.';
+          return;
+        }
+
         switch (response.rol) {//redirecciona segun el rol del usuario
           case 1 : this.router.navigate(['/atencion-cliente']); break;
           case 2 : this.router.navigate(['/operaciones']); break;

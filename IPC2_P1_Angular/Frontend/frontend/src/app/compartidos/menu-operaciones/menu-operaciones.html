@@ -1,0 +1,13 @@
+<div class="menu-container" [class.open]="isOpen">
+  <button class="close-btn" (click)="toggleMenu()">X</button>
+  <ul>
+    <li routerLink="/crear-destino">Crear Destino</li>
+    <li routerLink="/operaciones">Editar Destino</li>
+    <li routerLink="/crear-paquetes">Crear Paquete</li>
+    <li routerLink="/editar-paquete">Editar Paquete</li>
+    <li routerLink="/crear-proveedor">Registrar Proveedor</li>
+    <li (click)="logout()">Cerrar Sesión</li>
+  </ul>
+</div>
+<button class="open-btn" (click)="toggleMenu()">Opciones</button>
+
