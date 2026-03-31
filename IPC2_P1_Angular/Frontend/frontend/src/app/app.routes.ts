@@ -14,6 +14,7 @@ import { CrearProveedor } from './paginas/crear-proveedor/crear-proveedor';
 import { ConsultarPaquete } from './paginas/consultar-paquete/consultar-paquete';
 import { ConsultarDetallePaquete } from './paginas/consultar-detalle-paquete/consultar-detalle-paquete';
 import { VincularPaqueteServicio } from './paginas/crear-paquetes/vincular-paquete-servicio/vincular-paquete-servicio';
+import { CrearCliente } from './paginas/crear-cliente/crear-cliente';
 
 
 export const routes: Routes = [
@@ -27,6 +28,7 @@ export const routes: Routes = [
   {path: 'consultar-detalle-paquete', component: ConsultarDetallePaquete},
   {path: 'crear-proveedor', component: CrearProveedor},
   {path: 'editar-paquete', component: EditarPaquete},
+  {path: 'crear-cliente', component: CrearCliente},
   {path: 'vincular-paquete-servicio', component: VincularPaqueteServicio},
   {path: 'crear-destino', component: CrearDestino},
   {path: 'consultar-paquetes', component: ConsultarPaquete},
