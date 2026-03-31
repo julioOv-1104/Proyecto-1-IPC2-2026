@@ -1,1 +1,97 @@
-<p>vista-atencion-cliente works!</p>
+<div class="crear-paquetes-page">
+    <h1>Editar Clientes</h1>
+    <section class="destinos-card">
+        <header class="destinos-header">
+            <h2>Clientes</h2>
+            <p>Clientes existentes en el sistema.</p>
+        </header>
+
+        <div class="destinos-table-wrapper">
+            <table class="destinos-table">
+                <thead>
+                    <tr>
+                        <th>DPI</th>
+                        <th>Nombre Cliente</th>
+                        <th>Fecha Nacimiento</th>
+                        <th>Telefono</th>
+                        <th>Email</th>
+                        <th>Nacionalidad</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let c of clientes">
+                        <td>{{ c.dpi }}</td>
+                        <td>{{ c.nombre_cliente }}</td>
+                        <td>{{ c.fecha_nacimiento | date }}</td>
+                        <td>{{ c.telefono }}</td>
+                        <td>{{ c.email }}</td>
+                        <td>{{ c.nacionalidad }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="form-card">
+
+
+
+        <header class="form-header">
+            <h2>Editar Cliente</h2>
+            <p>Completa los datos y guarda los cambios.</p>
+        </header>
+
+        <form  (ngSubmit)="editarCliente()" class="paquete-form">
+            <div class="form-grid">
+            
+                <div class="field">
+                    <label for="precio_publico">DPI</label>
+                    <input  [(ngModel)]="dpi" type="text" name="dpi" id="dpi"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label for="capacidad">Nombre Cliente</label>
+                    <input  [(ngModel)]="nombre_cliente" type="text" name="nombre_cliente" id="nombre_cliente" required>
+                </div>
+
+                <div class="field">
+                    <label for="duracion">Fecha nacimiento</label>
+                    <input  [(ngModel)]="fecha_nacimiento" type="date" name="fecha_nacimiento" id="fecha_nacimiento" required>
+                </div>
+
+            </div>
+
+            <div class="field">
+                <label for="descripcion">Telefono</label>
+                <textarea  [(ngModel)]="telefono" name="telefono" id="telefono"></textarea>
+            </div>
+
+            
+            <div class="field">
+                <label for="descripcion">Email</label>
+                <textarea  [(ngModel)]="email" name="email" id="email"></textarea>
+            </div>
+
+
+            <div class="field">
+                <label for="descripcion">Nacionalidad</label>
+                <textarea  [(ngModel)]="nacionalidad" name="nacionalidad" id="nacionalidad"></textarea>
+            </div>
+
+
+            <div class="actions">
+                <button type="submit" class="btn-submit">Editar Cliente</button>
+            </div>
+
+        </form>
+        <div *ngIf="mensajeError" style="color: rgb(255, 0, 0);">
+            {{ mensajeError }}
+        </div>
+    </section>
+</div>
+
+
+
+<app-menu-atencion></app-menu-atencion>

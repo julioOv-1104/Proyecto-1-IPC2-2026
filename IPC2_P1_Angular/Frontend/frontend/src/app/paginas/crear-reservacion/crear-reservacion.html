@@ -1,0 +1,87 @@
+<div class="crear-paquetes-page">
+<h1>Registrar Nueva Reserva</h1>
+
+
+ <section class="destinos-card">
+        <header class="destinos-header">
+            <h2>Paquetes</h2>
+            <p>Paquetes disponibles en el sistema.</p>
+        </header>
+
+        <div class="destinos-table-wrapper">
+            <table class="destinos-table">
+                <thead>
+                    <tr>
+                        <th>ID Paquete</th>
+                        <th>Nombre Paquete</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let p of paquetes">
+                        <td>{{ p.id_paquete }}</td>
+                        <td>{{ p.nombre_paquete }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+    <section class="form-card">
+        <header class="form-header">
+            <h2>Registrar Nueva Reserva</h2>
+            <p>Completa los datos y guarda tu reserva.</p>
+        </header>
+
+        <form  (ngSubmit)="registrarReserva()" class="paquete-form">
+            <div class="form-grid">
+            
+                <div class="field">
+                    <label for="precio_publico">Numero Reserva</label>
+                    <input  [(ngModel)]="numero_reserva" type="text" name="numero_reserva" id="numero_reserva"
+                        required placeholder="RE-0000n">
+                </div>
+
+                <div class="field">
+                    <label for="capacidad">Fecha Creacion</label>
+                    <input  [(ngModel)]="fecha_creacion" type="date" name="fecha_creacion" id="fecha_creacion" required>
+                </div>
+
+                <div class="field">
+                    <label for="duracion">Fecha Viaje</label>
+                    <input  [(ngModel)]="fecha_viaje" type="date" name="fecha_viaje" id="fecha_viaje" required>
+                </div>
+
+            </div>
+
+            <div class="field">
+                    <label for="precio_publico">ID Paquete</label>
+                    <input  [(ngModel)]="id_paquete" type="text" name="id_paquete" id="id_paquete"
+                        required>
+                </div>
+
+            <div class="field">
+                <label for="precio_publico">Cantidad Personas</label>
+                <input  [(ngModel)]="cantidad_personas" type="number" name="cantidad_personas" id="cantidad_personas">
+            </div>
+
+            <div class="field">
+                <label for="precio_publico">Costo Total</label>
+                <input  [(ngModel)]="costo_total" type="number" name="costo_total" id="costo_total">
+            </div>
+
+
+            <div class="actions">
+                <button type="submit" class="btn-submit">Registrar Reserva</button>
+            </div>
+
+        </form>
+        <div *ngIf="mensajeError" style="color: rgb(255, 0, 0);">
+            {{ mensajeError }}
+        </div>
+    </section>
+</div>
+
+<app-menu-atencion></app-menu-atencion>

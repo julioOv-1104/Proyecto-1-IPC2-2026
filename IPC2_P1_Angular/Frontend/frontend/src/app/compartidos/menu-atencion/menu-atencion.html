@@ -1,1 +1,16 @@
-<p>menu-atencion works!</p>
+<div class="menu-container" [class.open]="isOpen">
+  <button class="close-btn" (click)="toggleMenu()">X</button>
+  <ul>
+    <li routerLink="/crear-cliente">Crear Cliente</li>
+    <li routerLink="/atencion-cliente">Editar Cliente</li>
+    <li routerLink="/crear-reservacion">Crear Reservaciones</li>
+    <li routerLink="/">Registrar Pago</li>
+    <li>Cancelar Reservaciones</li>
+    <li>Consultar Historial de Cliente</li>
+    <li>Consultar Historial de Pagos</li>
+    <li>Consultar Reservaciones Disponibles</li>
+    <li>Consultar Reservaciones del Dia</li>
+    <li (click)="logout()">Cerrar Sesión</li>
+  </ul>
+</div>
+<button class="open-btn" (click)="toggleMenu()">Opciones</button>

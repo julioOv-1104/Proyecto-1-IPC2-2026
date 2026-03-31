@@ -116,7 +116,7 @@ public class AtencionClienteServlet extends HttpServlet {
                 response.getWriter().print("{\"status\":\"error\",\"mensaje\":\"El DPI ya esta registrado\"}");
             } else {
 
-                response.getWriter().print("{\"status\":\"exito\",\"mensaje\":\"Cliente registrado con exito}");
+                response.getWriter().print("{\"status\":\"exito\",\"mensaje\":\"Cliente registrado con exito \"}");
 
             }
 
@@ -139,7 +139,7 @@ public class AtencionClienteServlet extends HttpServlet {
                 response.getWriter().print("{\"status\":\"error\",\"mensaje\":\"ocurrio un error editando el cliente\"}");
             } else {
 
-                response.getWriter().print("{\"status\":\"exito\",\"mensaje\":\"Cliente editado con exito}");
+                response.getWriter().print("{\"status\":\"exito\",\"mensaje\":\"Cliente editado con exito\"}");
 
             }
 
