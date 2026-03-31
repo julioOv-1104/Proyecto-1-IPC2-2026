@@ -2,7 +2,7 @@ package Servlets;
 
 import DAOs.*;
 import Modelos.*;
-import Servicios.RegistrarPagoService;
+import Services.RegistrarPagoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

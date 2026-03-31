@@ -11,6 +11,9 @@ import { authGuard } from './guard/auth-guard';
 import { CrearDestino } from './paginas/crear-destino/crear-destino';
 import { EditarPaquete } from './paginas/editar-paquete/editar-paquete';
 import { CrearProveedor } from './paginas/crear-proveedor/crear-proveedor';
+import { ConsultarPaquete } from './paginas/consultar-paquete/consultar-paquete';
+import { ConsultarDetallePaquete } from './paginas/consultar-detalle-paquete/consultar-detalle-paquete';
+import { VincularPaqueteServicio } from './paginas/crear-paquetes/vincular-paquete-servicio/vincular-paquete-servicio';
 
 
 export const routes: Routes = [
@@ -21,9 +24,12 @@ export const routes: Routes = [
   {path: 'editar-usuarios', component: EditarUsuarios},
   {path: 'crear-paquetes', component: CrearPaquetes},
   {path: 'registro', component: RegistroForm},
+  {path: 'consultar-detalle-paquete', component: ConsultarDetallePaquete},
   {path: 'crear-proveedor', component: CrearProveedor},
   {path: 'editar-paquete', component: EditarPaquete},
+  {path: 'vincular-paquete-servicio', component: VincularPaqueteServicio},
   {path: 'crear-destino', component: CrearDestino},
+  {path: 'consultar-paquetes', component: ConsultarPaquete},
   { path: 'atencion-cliente', component: VistaAtencionCliente, canActivate: [authGuard], data:{rol: 1} },
   { path: 'operaciones', component: VistaOperaciones }
 ];

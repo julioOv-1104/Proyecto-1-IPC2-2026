@@ -1,0 +1,64 @@
+<div class="crear-paquetes-page">
+    <h1>Vincular Paquete con Servicios</h1>
+ <section class="destinos-card">
+        <header class="destinos-header">
+            <h2>Servicios</h2>
+            <p>Servicios disponibles en el sistema.</p>
+        </header>
+
+        <div class="destinos-table-wrapper">
+            <table class="destinos-table">
+                <thead>
+                    <tr>
+                        <th>ID Servicio</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let s of servicios">
+                        <td>{{ s.id_servicio }}</td>
+                        <td>{{ s.descripcion }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+
+    <section class="form-card">
+        <header class="form-header">
+            <h2>Vincular</h2>
+            <p>Completa los datos y guarda los cambios.</p>
+        </header>
+
+        <form (ngSubmit)="vincularServicio()" class=" paquete-form">
+            <div class="form-grid">
+
+                <div class="field">
+                    <label for="id_destino">ID servicio</label>
+                    <input [(ngModel)]="id_servicio" type="number" name="id_servicio" id="id_servicio" required>
+                </div>
+
+                <div class="field">
+                    <label for="id_destino">Costo</label>
+                    <input [(ngModel)]="costo" type="number" name="costo" id="costo" required>
+                </div>
+
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="btn-submit">Registrar Vinculo</button>
+            </div>
+
+            <div *ngIf="minimo" class="actions">
+                <button (click)="terminar()" class="btn-submit">Terminar</button>
+            </div>
+
+        </form>
+        <div *ngIf="mensajeError" style="color: rgb(255, 0, 0);">
+            {{ mensajeError }}
+        </div>
+    </section>
+</div>

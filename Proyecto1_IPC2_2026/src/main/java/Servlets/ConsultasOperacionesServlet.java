@@ -19,7 +19,7 @@ public class ConsultasOperacionesServlet extends HttpServlet {
     PaqueteDAO paqueteDao = new PaqueteDAO();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException { // doGet para consultas de Operaciones
 
         ObjectMapper om = new ObjectMapper();
@@ -84,7 +84,7 @@ public class ConsultasOperacionesServlet extends HttpServlet {
 
             
             DetallePaquete entrante = om.readValue(request.getInputStream(), DetallePaquete.class);
-            DetallePaquete detalle = paqueteDao.obtenerDetallePaquetes(entrante);
+            ArrayList<DetallePaquete> detalle = paqueteDao.obtenerDetallePaquetes(entrante);
 
             if (detalle == null) {
                 //no existe ese id_paquete

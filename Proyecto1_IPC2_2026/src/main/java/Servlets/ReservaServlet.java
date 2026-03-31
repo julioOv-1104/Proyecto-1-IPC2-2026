@@ -2,7 +2,7 @@ package Servlets;
 
 import DAOs.*;
 import Modelos.*;
-import Servicios.CancelacionReservaService;
+import Services.CancelacionReservaService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

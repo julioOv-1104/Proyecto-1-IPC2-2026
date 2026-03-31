@@ -10,25 +10,25 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 @WebServlet(name = "PaqueteServlet", urlPatterns = {"/PaqueteServlet"})
 public class PaqueteServlet extends HttpServlet {
 
     PaqueteDAO paquetedao = new PaqueteDAO();
 
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-         ObjectMapper om = new ObjectMapper();
+
+        ObjectMapper om = new ObjectMapper();
         response.setContentType("application/json; charset=UTF-8");
 
         ArrayList<Paquete> paquetes = paquetedao.obtenerPaquetes();
 
         if (paquetes.isEmpty()) {
             response.getWriter().print("{\"status\":\"error\",\"mensaje\":\"Ocurrio un error con obtener paquetes\"}");
-            
+
         } else {
             String json = om.writeValueAsString(paquetes);
             response.getWriter().print(json);
@@ -36,15 +36,14 @@ public class PaqueteServlet extends HttpServlet {
         }
 
     }
-    
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException { //doPost para crear y editar paquetes
 
         ObjectMapper om = new ObjectMapper();
         response.setContentType("application/json; charset=UTF-8");
-        
+
         String accionRecibida = request.getParameter("accion");
 
         if (accionRecibida == null) {
@@ -62,6 +61,10 @@ public class PaqueteServlet extends HttpServlet {
                     editarPaquete(request, response, om);
                     break;
 
+                case "vincular":
+                    vincularPaqueteServicio(request, response, om);
+                    break;
+
                 default:
 
                     response.getWriter().print("{\"error\": \"Acción no válida\"}");
@@ -70,10 +73,9 @@ public class PaqueteServlet extends HttpServlet {
             e.printStackTrace();
 
         }
-        
+
     }
-    
-    
+
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException { //doPut para crear un cliente o para editarlo
@@ -138,6 +140,28 @@ public class PaqueteServlet extends HttpServlet {
 
     }
 
-    
+    private void vincularPaqueteServicio(HttpServletRequest request, HttpServletResponse response, ObjectMapper om) {
+
+        try {
+            Map<String, Object> datos = om.readValue(request.getInputStream(), Map.class);
+
+            int id_paquete = ((Number) datos.get("id_paquete")).intValue();
+            int id_servicio = ((Number) datos.get("id_servicio")).intValue();
+            double costo = ((Number) datos.get("costo")).doubleValue();
+
+            if (!paquetedao.vincularPaqueteServicio(id_paquete, id_servicio, costo)) {
+
+                response.getWriter().print("{\"status\":\"error\",\"mensaje\":\"Error al vincular el paquete\"}");
+            } else {
+
+                response.getWriter().print("{\"status\":\"exito\",\"mensaje\":\"paquete y servicio vinculados con exito\"}");
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("ERROR AL VINCULAR SERVICIO Y PAQUETE DESDE SERVLET " + e.getMessage());
+        }
+
+    }
 
 }

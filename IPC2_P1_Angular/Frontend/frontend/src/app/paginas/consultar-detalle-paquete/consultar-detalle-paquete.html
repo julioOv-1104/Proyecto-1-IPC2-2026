@@ -1,0 +1,54 @@
+<div class="formulario-reportes">
+    <h2>Consultar Detalle del Paquete</h2>
+
+    <form (ngSubmit)="obtenerDetallePaquete()">
+        <div class="campos-fechas">
+            <div class="campo">
+                <label for="fechaFin">ID Paquete:</label>
+                <input  [(ngModel)]="id_paquete" type="number" id="id_paquete" name="id_paquete" required>
+            </div>
+        </div>
+
+        <div class="botones">
+            <button type="submit" class="btn-ventas">Consultar</button>
+        </div>
+
+
+    </form>
+</div>
+
+<div class="reporte-ventas-wrapper">
+  <section class="reporte-ventas-card">
+    <header class="reporte-ventas-header">
+      <h2>Detalle del Paquete</h2>
+      <p>Información detallada sobre el paquete seleccionado.</p>
+    </header>
+
+    <div *ngIf="detalle" class="reporte-ventas-scroll">
+      <table class="reporte-ventas-table">
+        <thead>
+          <tr>
+            <th>Paquete</th>
+            <th>Servicio</th>
+            <th>Costo</th>
+            <th>Proveedor</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let d of detalle">
+            <td>{{ d.paquete }}</td>
+            <td>{{ d.servicio }}</td>
+            <td>{{ d.costo }}</td>
+            <td>{{ d.proveedor }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+</div>
+
+
+
+<app-menu-operaciones></app-menu-operaciones>

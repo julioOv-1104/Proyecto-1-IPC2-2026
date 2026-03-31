@@ -8,4 +8,5 @@ export interface PaqueteModel {
     precio_publico: number;
     capacidad: number;
     estado: boolean;
+    destino: string;
 }

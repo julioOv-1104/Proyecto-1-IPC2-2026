@@ -38,6 +38,30 @@ public class PaqueteDAO {
         return null;
     }
     
+    public boolean vincularPaqueteServicio(int id_paquete, int id_servicio, double costo){
+    
+        try (Connection conn = conexion.conectar()) {
+            
+            String sql = "INSERT INTO paquete_servicio (id_paquete, id_servicio,costo) VALUES (?,?,?)";
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setInt(1,id_paquete);
+            stm.setInt(2, id_servicio);
+            stm.setDouble(3, costo);
+            
+            
+            stm.executeUpdate();
+            
+            return true;
+            
+            
+        } catch (SQLException e) {
+            System.out.println("ERROR AL VINCULAR SERVICIO Y PAQUETE DESDE DAO" + e.getMessage());
+        }
+        
+        return false;
+    
+    }
+    
     public ArrayList<Paquete> obtenerPaquetes() {
         
         ArrayList<Paquete> paquetes = new ArrayList<>();
@@ -112,7 +136,9 @@ public class PaqueteDAO {
         return false;
     }
     
-    public DetallePaquete obtenerDetallePaquetes(DetallePaquete buscado) {
+    public ArrayList<DetallePaquete> obtenerDetallePaquetes(DetallePaquete buscado) {
+        
+        ArrayList<DetallePaquete> detalle = new ArrayList<>();
         
         try (Connection conn = conexion.conectar()) {
             
@@ -135,19 +161,20 @@ public class PaqueteDAO {
             
             ResultSet rs = stm.executeQuery();
             
-            if (rs.next()) {
+            while (rs.next()) {
                 
                 DetallePaquete nuevo = new DetallePaquete(rs.getString("paquete"), rs.getString("servicio"),
                         rs.getDouble("costo_servicio"), rs.getString("proveedor"));
+                detalle.add(nuevo);
                 
-                return nuevo;
+                
             }
             
         } catch (SQLException e) {
             System.out.println("ERROR AL OBTENER DETALLE DE PAQUETE DESDE DAO" + e.getMessage());
         }
         
-        return null;
+        return detalle;
     }
     
 }

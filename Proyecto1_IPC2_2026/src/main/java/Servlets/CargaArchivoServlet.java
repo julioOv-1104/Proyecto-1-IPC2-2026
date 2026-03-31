@@ -1,7 +1,7 @@
 
 package Servlets;
 
-import Servicios.CargarArchivoService;
+import Services.CargarArchivoService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;

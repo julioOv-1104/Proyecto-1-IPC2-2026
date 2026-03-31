@@ -8,17 +8,18 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PaqueteModel } from '../../modelos/paquete-model';
 import { MenuOperaciones } from '../../compartidos/menu-operaciones/menu-operaciones';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-crear-paquetes',
-  imports: [MenuAdmin, CommonModule, FormsModule, MenuOperaciones],
+  imports: [MenuAdmin, CommonModule, FormsModule, MenuOperaciones, RouterLink],
   templateUrl: './crear-paquetes.html',
   styleUrl: './crear-paquetes.css',
 })
 export class CrearPaquetes {
 
   constructor(private destinoService: DestinoService, private paqueteService: PaqueteService,
-    private usuarioService: UsuarioService) { }
+    private usuarioService: UsuarioService, private router: Router) { }
 
   destinos: DestinoModel[] = [];
   mensajeError: string | null = null;
@@ -83,15 +84,10 @@ export class CrearPaquetes {
     
             
             console.log('Registro exitoso, Paquete creado:', response);
-    
-            // limpiar campos del formulario
-            this.nombre_paquete = '';
-            this.id_destino = 0;
-            this.duracion = 0;
-            this.precio_publico = 0;
-            this.descripcion = '';
-            this.capacidad = 0;
+
             this.mensajeError = 'Registro de Paquete exitoso.';
+
+            this.router.navigate(['/vincular-paquete-servicio']);
     
           }
 
