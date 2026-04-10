@@ -8,11 +8,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PaqueteModel } from '../../modelos/paquete-model';
 import { MenuOperaciones } from '../../compartidos/menu-operaciones/menu-operaciones';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear-paquetes',
-  imports: [MenuAdmin, CommonModule, FormsModule, MenuOperaciones, RouterLink],
+  imports: [MenuAdmin, CommonModule, FormsModule, MenuOperaciones],
   templateUrl: './crear-paquetes.html',
   styleUrl: './crear-paquetes.css',
 })

@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ServicioModel } from '../../../modelos/servicio-model';
 import { PaqueteService } from '../../../servicios/paquete.service';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vincular-paquete-servicio',
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule],
   templateUrl: './vincular-paquete-servicio.html',
   styleUrl: './vincular-paquete-servicio.css',
 })

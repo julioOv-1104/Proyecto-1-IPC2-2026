@@ -1,50 +1,76 @@
+<div *ngIf="numeroReserva.length > 0">
+    <div class="crear-paquetes-page">
+        <h1>Vincular Cliente con Reserva {{ numeroReserva }}</h1>
+        <section class="form-card">
+
+            <form (ngSubmit)="vincularCliente()" class="paquete-form">
+                <h3>Maximo: {{ cantidad_personas }}</h3>
+                <div class="form-grid">
+
+                    <div class="field">
+                        <label for="precio_publico">DPI/Pasaporte</label>
+                        <input [(ngModel)]="dpiVincular" type="text" name="dpi" id="dpi" required>
+                    </div>
+                    <div class="actions">
+                        <button type="submit" class="btn-submit">Vincular Cliente</button>
+                    </div>
+                </div>
+            </form>
+            <div *ngIf="mensajeError2" style="color: rgb(255, 0, 0);">
+                {{ mensajeError2 }}
+            </div>
+        </section>
+    </div>
+</div>
+
+
 
 <div class="crear-paquetes-page">
-<h1>Registrar Nuevo Cliente</h1>
+    <h1>Registrar Nuevo Cliente</h1>
     <section class="form-card">
         <header class="form-header">
             <h2>Registrar Nuevo Cliente</h2>
             <p>Completa los datos y guarda tu cliente.</p>
         </header>
 
-        <form  (ngSubmit)="registrarCliente()" class="paquete-form">
+        <form (ngSubmit)="registrarCliente()" class="paquete-form">
             <div class="form-grid">
-            
+
                 <div class="field">
-                    <label for="precio_publico">DPI</label>
-                    <input  [(ngModel)]="dpi" type="text" name="dpi" id="dpi"
-                        required>
+                    <label for="precio_publico">DPI/Pasaporte</label>
+                    <input [(ngModel)]="dpi" type="text" name="dpi" id="dpi" required>
                 </div>
 
                 <div class="field">
                     <label for="capacidad">Nombre Cliente</label>
-                    <input  [(ngModel)]="nombre_cliente" type="text" name="nombre_cliente" id="nombre_cliente" required>
+                    <input [(ngModel)]="nombre_cliente" type="text" name="nombre_cliente" id="nombre_cliente" required>
                 </div>
 
                 <div class="field">
                     <label for="duracion">Fecha nacimiento</label>
-                    <input  [(ngModel)]="fecha_nacimiento" type="date" name="fecha_nacimiento" id="fecha_nacimiento" required>
+                    <input [(ngModel)]="fecha_nacimiento" type="date" name="fecha_nacimiento" id="fecha_nacimiento"
+                        required>
                 </div>
 
+
+
+                <div class="field">
+                    <label for="descripcion">Telefono</label>
+                    <input [(ngModel)]="telefono" name="telefono" id="telefono">
+                </div>
+
+
+                <div class="field">
+                    <label for="descripcion">Email</label>
+                    <input [(ngModel)]="email" name="email" id="email">
+                </div>
+
+
+                <div class="field">
+                    <label for="descripcion">Nacionalidad</label>
+                    <input [(ngModel)]="nacionalidad" name="nacionalidad" id="nacionalidad">
+                </div>
             </div>
-
-            <div class="field">
-                <label for="descripcion">Telefono</label>
-                <textarea  [(ngModel)]="telefono" name="telefono" id="telefono"></textarea>
-            </div>
-
-            
-            <div class="field">
-                <label for="descripcion">Email</label>
-                <textarea  [(ngModel)]="email" name="email" id="email"></textarea>
-            </div>
-
-
-            <div class="field">
-                <label for="descripcion">Nacionalidad</label>
-                <textarea  [(ngModel)]="nacionalidad" name="nacionalidad" id="nacionalidad"></textarea>
-            </div>
-
 
             <div class="actions">
                 <button type="submit" class="btn-submit">Registrar Cliente</button>

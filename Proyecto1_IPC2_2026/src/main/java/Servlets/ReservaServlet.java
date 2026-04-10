@@ -135,7 +135,7 @@ public class ReservaServlet extends HttpServlet {
 
         } else {
 
-            response.getWriter().print("{\"status\":\"error\",\"mensaje\":\"Ocurrio un error al vincular cliente y reserva\"}");
+            response.getWriter().print("{\"status\":\"error\",\"mensaje\":\"El usuario ya está vinculado o no esta registrado en el sistema\"}");
         }
 
     }
