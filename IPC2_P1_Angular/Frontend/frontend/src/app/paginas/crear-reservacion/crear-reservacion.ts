@@ -21,22 +21,22 @@ import { Router } from '@angular/router';
 export class CrearReservacion {
 
   constructor(private reservaService: ReservaService, private paqueteService: PaqueteService,
-     private router: Router, private usuarioService: UsuarioService) {}
+    private router: Router, private usuarioService: UsuarioService) { }
 
   paquetes: PaqueteModel[] = [];
 
   mensajeError: string | null = null;
 
   numero_reserva: string = '';
-  fecha_creacion:Date | null = null;
+  fecha_creacion: Date | null = null;
   fecha_viaje: Date | null = null;
   id_paquete: number = 0;
   id_usuario: number = 0;
   cantidad_personas: number = 0;
   costo_total: number = 0;
 
- ngOnInit() {
-   
+  ngOnInit() {
+
     this.obtenerPaquetes();
     this.obtenerUsuario();
   }
@@ -51,7 +51,7 @@ export class CrearReservacion {
 
   }
 
-  obtenerUsuario(){
+  obtenerUsuario() {
 
     console.log('Obteniendo usuario logueado...');
 
@@ -78,34 +78,34 @@ export class CrearReservacion {
 
 
     if (!nuevaReserva.numero_reserva || !nuevaReserva.fecha_creacion || !nuevaReserva.fecha_viaje
-      || !nuevaReserva.id_paquete ||  !nuevaReserva.cantidad_personas || !nuevaReserva.costo_total) {
+      || !nuevaReserva.id_paquete || !nuevaReserva.cantidad_personas || !nuevaReserva.costo_total) {
       this.mensajeError = 'Por favor, complete todos los campos obligatorios.';
       return;
     }
 
     this.reservaService.registrarReserva(nuevaReserva).subscribe({
-                next: (response: any) => {
-          
-                  // si recibe un error
-                  if (response.status === 'error') {
-                    this.mensajeError = response.mensaje;
-                    return;
-                  }
-          
-                  const reserva = response as ReservaModel;
-                  console.log('Registro exitoso, reserva creada:', reserva);
-          
-                  this.mensajeError = 'Registro de reserva exitoso.';
+      next: (response: any) => {
 
-                  this.reservaService.guardarNumeroReserva(reserva);//guardar el numero de la reserva para vincular clientes despues
-                  this.reservaService.guardarPersonasReserva(reserva);//guardar la cantidad de personas para mostrarla despues
+        // si recibe un error
+        if (response.status === 'error') {
+          this.mensajeError = response.mensaje;
+          return;
+        }
 
-                  this.router.navigate(['/crear-cliente']);
-          
-                }
-          
-          
-              });
+        const reserva = response as ReservaModel;
+        console.log('Registro exitoso, reserva creada:', reserva);
+
+        this.mensajeError = 'Registro de reserva exitoso.';
+
+        this.reservaService.guardarNumeroReserva(reserva);//guardar el numero de la reserva para vincular clientes despues
+        this.reservaService.guardarPersonasReserva(reserva);//guardar la cantidad de personas para mostrarla despues
+
+        this.router.navigate(['/crear-cliente']);
+
+      }
+
+
+    });
 
   }
 

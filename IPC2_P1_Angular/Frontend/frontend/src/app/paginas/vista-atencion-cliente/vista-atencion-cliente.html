@@ -42,44 +42,44 @@
             <p>Completa los datos y guarda los cambios.</p>
         </header>
 
-        <form  (ngSubmit)="editarCliente()" class="paquete-form">
+        <form (ngSubmit)="editarCliente()" class="paquete-form">
             <div class="form-grid">
-            
+
                 <div class="field">
                     <label for="precio_publico">DPI/Pasaporte</label>
-                    <input  [(ngModel)]="dpi" type="text" name="dpi" id="dpi"
-                        required>
+                    <input [(ngModel)]="dpi" type="text" name="dpi" id="dpi" required>
                 </div>
 
                 <div class="field">
                     <label for="capacidad">Nombre Cliente</label>
-                    <input  [(ngModel)]="nombre_cliente" type="text" name="nombre_cliente" id="nombre_cliente" required>
+                    <input [(ngModel)]="nombre_cliente" type="text" name="nombre_cliente" id="nombre_cliente" required>
                 </div>
 
                 <div class="field">
                     <label for="duracion">Fecha nacimiento</label>
-                    <input  [(ngModel)]="fecha_nacimiento" type="date" name="fecha_nacimiento" id="fecha_nacimiento" required>
+                    <input [(ngModel)]="fecha_nacimiento" type="date" name="fecha_nacimiento" id="fecha_nacimiento"
+                        required>
                 </div>
 
+
+
+                <div class="field">
+                    <label for="descripcion">Telefono</label>
+                    <input [(ngModel)]="telefono" name="telefono" id="telefono">
+                </div>
+
+
+                <div class="field">
+                    <label for="descripcion">Email</label>
+                    <input [(ngModel)]="email" name="email" id="email">
+                </div>
+
+
+                <div class="field">
+                    <label for="descripcion">Nacionalidad</label>
+                    <input [(ngModel)]="nacionalidad" name="nacionalidad" id="nacionalidad">
+                </div>
             </div>
-
-            <div class="field">
-                <label for="descripcion">Telefono</label>
-                <textarea  [(ngModel)]="telefono" name="telefono" id="telefono"></textarea>
-            </div>
-
-            
-            <div class="field">
-                <label for="descripcion">Email</label>
-                <textarea  [(ngModel)]="email" name="email" id="email"></textarea>
-            </div>
-
-
-            <div class="field">
-                <label for="descripcion">Nacionalidad</label>
-                <textarea  [(ngModel)]="nacionalidad" name="nacionalidad" id="nacionalidad"></textarea>
-            </div>
-
 
             <div class="actions">
                 <button type="submit" class="btn-submit">Editar Cliente</button>

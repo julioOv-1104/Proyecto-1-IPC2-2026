@@ -1,0 +1,107 @@
+<div class="crear-paquetes-page">
+    <h1>Registrar Pago</h1>
+    <section class="destinos-card">
+        <header class="destinos-header">
+            <h2>Reservaciones</h2>
+            <p>Reservaciones existentes en el sistema.</p>
+        </header>
+
+        <div class="destinos-table-wrapper">
+            <table class="destinos-table">
+                <thead>
+                    <tr>
+                        <th>Numero de reservacion</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let r of reservas">
+                        <td>{{ r.numero_reserva }}</td>
+                        <td>{{ r.estado }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="form-card">
+
+
+
+        <header class="form-header">
+            <h2>Registrar Pago</h2>
+            <p>Completa los datos y guarda los cambios.</p>
+        </header>
+
+        <form class="paquete-form" (ngSubmit)="registrarPago()">
+            <div class="form-grid">
+
+                <div class="field">
+                    <label for="precio_publico">Numero de Reservacion</label>
+                    <input [(ngModel)]="numero_reserva" type="text" name="numero_reserva" id="numero_reservacion"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label for="capacidad">Monto</label>
+                    <input [(ngModel)]="monto" type="number" name="monto" id="monto" required>
+                </div>
+
+                <div class="field">
+                    <label for="duracion">Fecha </label>
+                    <input [(ngModel)]="fecha" type="date" name="fecha" id="fecha" required>
+                </div>
+
+                <div class="field">
+                    <label for="metodo_pago">Método de pago</label>
+                    <select [(ngModel)]="metodo" name="metodo" id="metodo" required>
+                        <option value="">Seleccionar opción</option>
+                        <option value="efectivo">Efectivo</option>
+                        <option value="tarjeta">Tarjeta</option>
+                        <option value="transferencia">Transferencia</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="btn-submit">Registrar Pago</button>
+            </div>
+
+        </form>
+        <div *ngIf="mensajeError" style="color: rgb(255, 0, 0);">
+            {{ mensajeError }}
+        </div>
+    </section>
+</div>
+
+
+<div class="crear-paquetes-page">
+    <h1>Cancelar Reserva</h1>
+    <section class="form-card">
+
+        <form (ngSubmit)="cancelarReserva()" class="paquete-form">
+            <div class="form-grid">
+
+                <div class="field">
+                    <label for="precio_publico">Numero de Reservacion</label>
+                    <input [(ngModel)]="reservaAcancelar" type="text" name="reservaAcancelar" id="reservaAcancelar"
+                        required>
+                </div>
+
+                <div class="actions">
+                    <button type="submit" class="btn-submit">Cancelar Reserva</button>
+                </div>
+            </div>
+        </form>
+        <div *ngIf="mensajeError2" style="color: rgb(255, 0, 0);">
+            {{ mensajeError2 }}
+        </div>
+    </section>
+</div>
+
+
+
+
+
+<app-menu-atencion></app-menu-atencion>

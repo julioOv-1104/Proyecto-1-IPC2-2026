@@ -1,14 +1,14 @@
 <div class="menu-container" [class.open]="isOpen">
   <button class="close-btn" (click)="toggleMenu()">X</button>
+  <h2>Atención al Cliente</h2>
   <ul>
     <li routerLink="/crear-cliente">Crear Cliente</li>
     <li routerLink="/atencion-cliente">Editar Cliente</li>
     <li routerLink="/crear-reservacion">Crear Reservaciones</li>
-    <li routerLink="/">Registrar Pago</li>
-    <li>Cancelar Reservaciones</li>
-    <li>Consultar Historial de Cliente</li>
-    <li>Consultar Historial de Pagos</li>
-    <li>Consultar Reservaciones Disponibles</li>
+    <li routerLink="/registrar-pago">Registrar Pago/ Cancelar Reservación</li>
+    <li routerLink="/historial-cliente">Consultar Historial de Cliente</li>
+    <li routerLink="/historial-pago">Consultar Historial de Pagos</li>
+    <li routerLink="/reservaciones-disponibles">Consultar Reservaciones Disponibles</li>
     <li>Consultar Reservaciones del Dia</li>
     <li (click)="logout()">Cerrar Sesión</li>
   </ul>

@@ -1,0 +1,52 @@
+<app-menu-atencion></app-menu-atencion>
+
+<div class="formulario-reportes">
+    <h2>Ingresar el Numero de reservacion</h2>
+
+    <form>
+        <div class="campos-fechas">
+            <div class="campo">
+                <label>Numero de reservacion:</label>
+                <input [(ngModel)]="numero_reserva" type="text" id="fechaInicio" name="fechaInicio" required>
+            </div>
+        </div>
+        <div class="botones">
+            <button type="button" class="btn-ventas" (click)="consultarHistorial()">Consultar Historial</button>
+        </div>
+
+    </form>
+</div>
+
+
+<div class="reporte-ventas-wrapper">
+    <section class="reporte-ventas-card">
+        <header class="reporte-ventas-header">
+            <h2>Historial de pagos de una reservacion</h2>
+        </header>
+
+        <div *ngIf="activo"  class="reporte-ventas-scroll">
+            <table class="reporte-ventas-table">
+                <thead>
+                    <tr>
+                        <th>Numero de reservacion</th>
+                        <th>Monto</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Método de Pago</th>
+                    </tr>
+                </thead>
+
+                <tbody *ngFor="let r of reservaciones">
+                    <tr>
+                        <td>{{ r.numero_reserva }}</td>
+                        <td>{{ r.monto}}</td>
+                        <td>{{ r.fecha }}</td>
+                        <td>{{ r.estado }}</td>
+                        <td>{{ r.metodo }}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>

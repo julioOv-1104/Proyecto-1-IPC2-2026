@@ -1,0 +1,53 @@
+<app-menu-atencion></app-menu-atencion>
+
+<div class="formulario-reportes">
+    <h2>Ingresar Fecha y Destino</h2>
+
+    <form>
+        <div class="campos-fechas">
+            <div class="campo">
+                <label>Fecha de Viaje:</label>
+                <input [(ngModel)]="fecha_viaje" type="date" id="fechaInicio" name="fechaInicio" required>
+            </div>
+            <div class="campo">
+                <label>Destino:</label>
+                <input [(ngModel)]="destino" type="text" id="destino" name="destino" required>
+            </div>
+        </div>
+        <div class="botones">
+            <button type="button" class="btn-ventas" (click)="consultarHistorial()">Consultar Historial</button>
+        </div>
+
+    </form>
+</div>
+
+
+<div class="reporte-ventas-wrapper">
+    <section class="reporte-ventas-card">
+        <header class="reporte-ventas-header">
+            <h2>Reservaciones disponibles para una fecha y destino específicos</h2>
+        </header>
+
+        <div *ngIf="activo"  class="reporte-ventas-scroll">
+            <table class="reporte-ventas-table">
+                <thead>
+                    <tr>
+                        <th>Nombre Paquete</th>
+                        <th>Capacidad</th>
+                        <th>Reservados</th>
+                        <th>Disponibles</th>
+                    </tr>
+                </thead>
+
+                <tbody *ngFor="let r of reservaciones">
+                    <tr>
+                        <td>{{ r.nombre_paquete }}</td>
+                        <td>{{ r.capacidad}}</td>
+                        <td>{{ r.reservados }}</td>
+                        <td>{{ r.disponibles }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>

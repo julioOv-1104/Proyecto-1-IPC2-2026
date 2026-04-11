@@ -19,7 +19,7 @@ public class HistorialAtencionClienteServlet extends HttpServlet {
     private HistorialAtencionClienteDAO historialDao = new HistorialAtencionClienteDAO();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException { //doGet para las consultas
 
         ObjectMapper om = new ObjectMapper();
@@ -34,7 +34,7 @@ public class HistorialAtencionClienteServlet extends HttpServlet {
 
         try {
             switch (accionRecibida) {
-                case "reservaciones": 
+                case "reservaciones":
                     mostrarReservacionesCliente(request, response, om);
                     break;
 
@@ -44,9 +44,6 @@ public class HistorialAtencionClienteServlet extends HttpServlet {
 
                 case "disponibles":
                     mostrarReservasDisponibles(request, response, om);
-                    break;
-                case "reservasHoy":
-                    mostrarReservasHoy(request, response, om);
                     break;
                 default:
 
@@ -58,6 +55,21 @@ public class HistorialAtencionClienteServlet extends HttpServlet {
         }
 
     }
+    
+    
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        ObjectMapper om = new ObjectMapper();
+        response.setContentType("application/json; charset=UTF-8");
+        
+        mostrarReservasHoy(request, response, om);
+        
+    }
+    
+    
 
     private void mostrarReservacionesCliente(HttpServletRequest request, HttpServletResponse response, ObjectMapper om) {
 
@@ -118,9 +130,9 @@ public class HistorialAtencionClienteServlet extends HttpServlet {
 
             Map<String, Object> datos = om.readValue(request.getInputStream(), Map.class);
 
-            Date fecha = (Date) datos.get("fecha");
+            String sFecha1 = (String) datos.get("fecha");
+            java.sql.Date fecha = java.sql.Date.valueOf(sFecha1);
             String destino = (String) datos.get("destino");
-
 
             disponibles = historialDao.obtenerReservacionesDisponibles(fecha, destino);
 
@@ -139,7 +151,7 @@ public class HistorialAtencionClienteServlet extends HttpServlet {
     }
 
     private void mostrarReservasHoy(HttpServletRequest request, HttpServletResponse response, ObjectMapper om) {
-        
+
         try {
             response.setContentType("application/json; charset=UTF-8");
 
@@ -158,8 +170,7 @@ public class HistorialAtencionClienteServlet extends HttpServlet {
             }
         } catch (Exception e) {
         }
-    
+
     }
-    
 
 }

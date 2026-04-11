@@ -16,6 +16,11 @@ import { ConsultarDetallePaquete } from './paginas/consultar-detalle-paquete/con
 import { VincularPaqueteServicio } from './paginas/crear-paquetes/vincular-paquete-servicio/vincular-paquete-servicio';
 import { CrearCliente } from './paginas/crear-cliente/crear-cliente';
 import { CrearReservacion } from './paginas/crear-reservacion/crear-reservacion';
+import { RegistrarPago } from './paginas/registrar-pago/registrar-pago';
+import { HistorialDeCliente } from './paginas/historial-de-cliente/historial-de-cliente';
+import { HistorialDePago } from './paginas/historial-de-pago/historial-de-pago';
+import { ReservacionesDisponibles } from './paginas/reservaciones-disponibles/reservaciones-disponibles';
+import { ReservacionesHoy } from './paginas/reservaciones-hoy/reservaciones-hoy';
 
 
 export const routes: Routes = [
@@ -35,5 +40,10 @@ export const routes: Routes = [
   {path: 'crear-destino', component: CrearDestino, canActivate: [authGuard], data:{roles: [2]}},
   {path: 'consultar-paquetes', component: ConsultarPaquete, canActivate: [authGuard], data:{roles: [2]}},
   { path: 'atencion-cliente', component: VistaAtencionCliente, canActivate: [authGuard], data:{roles: [1]} },
+  {path: 'registrar-pago', component: RegistrarPago, canActivate: [authGuard], data:{roles: [1]}},
+  {path: 'historial-cliente', component: HistorialDeCliente, canActivate: [authGuard], data:{roles: [1]}},
+  {path: 'historial-pago', component: HistorialDePago, canActivate: [authGuard], data:{roles: [1]}},
+  {path: 'reservaciones-disponibles', component: ReservacionesDisponibles, canActivate: [authGuard], data:{roles: [1]}},
+  {path: 'reservaciones-hoy', component: ReservacionesHoy, canActivate: [authGuard], data:{roles: [1]}},
   { path: 'operaciones', component: VistaOperaciones, canActivate: [authGuard], data:{roles: [2]}}
 ];

@@ -100,6 +100,7 @@ public class ReportesAdminServlet extends HttpServlet {
                     + "reportes de ventas en el intervalo\"}");
 
         } else {
+            
             String json = om.writeValueAsString(reportes);
             response.getWriter().print(json);
 

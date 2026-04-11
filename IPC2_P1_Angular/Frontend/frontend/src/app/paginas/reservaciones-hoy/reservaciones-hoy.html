@@ -1,0 +1,40 @@
+<div>
+    <app-menu-atencion></app-menu-atencion>
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="reporte-ventas-wrapper">
+    <section class="reporte-ventas-card">
+        <header class="reporte-ventas-header">
+            <h2>Reservaciones disponibles para una fecha y destino específicos</h2>
+        </header>
+
+        <div class="reporte-ventas-scroll">
+            <table class="reporte-ventas-table">
+                <thead>
+                    <tr>
+                        <th>Numero de Reserva</th>
+                        <th>Fecha creacion</th>
+                        <th>Estado</th>
+                        <th>Costo Total</th>
+                    </tr>
+                </thead>
+
+                <tbody *ngFor="let r of reservaciones">
+                    <tr>
+                        <td>{{ r.numero_reserva }}</td>
+                        <td>{{ r.fecha_creacion}}</td>
+                        <td>{{ r.estado }}</td>
+                        <td>{{ r.costo_total }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>

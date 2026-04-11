@@ -13,6 +13,8 @@ export class ReservaService {
 
   crearUrl = 'http://localhost:8080/Proyecto1_IPC2_2026/ReservaServlet?accion=registrar';
   vincularUrl = 'http://localhost:8080/Proyecto1_IPC2_2026/ReservaServlet';
+  obtenerUrl = 'http://localhost:8080/Proyecto1_IPC2_2026/ReservaServlet';
+  cancelarUrl= 'http://localhost:8080/Proyecto1_IPC2_2026/ReservaServlet?accion=cancelar';
   
   registrarReserva(reserva: Partial<ReservaModel>) {
     return this.http.post(this.crearUrl, reserva);
@@ -49,6 +51,13 @@ export class ReservaService {
     sessionStorage.removeItem(this.PERSONAS_KEY);
   }
 
+  obtenerReservas(): Observable<ReservaModel[]> {
+    return this.http.get<ReservaModel[]>(this.obtenerUrl);
+  }
+
+  cancelarReserva(reserva: Partial<ReservaModel>) {
+    return this.http.post(this.cancelarUrl, reserva);
+  }
 
 
 }

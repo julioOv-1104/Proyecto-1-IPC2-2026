@@ -19,22 +19,22 @@ export class ReporteAgenteVentas {
 
   reportes: ReportesAgenteMasVentas[] = [];//se almcenan los datos del reporte
 
-constructor(private reportesService: ReportesService){}
+  constructor(private reportesService: ReportesService) { }
 
-ngOnInit(){
-  this.obtenerReporte();
-}
+  ngOnInit() {
+    this.obtenerReporte();
+  }
 
-obtenerReporte(){
+  obtenerReporte() {
 
-this.reportesService
-.reporteAgenteMasVentas(this.fechaInicio, this.fechaFin)
-.subscribe(data => {
+    this.reportesService
+      .reporteAgenteMasVentas(this.fechaInicio, this.fechaFin)
+      .subscribe(data => {
 
-this.reportes = data;
+        this.reportes = data;
 
-});
+      });
 
-}
+  }
 
 }

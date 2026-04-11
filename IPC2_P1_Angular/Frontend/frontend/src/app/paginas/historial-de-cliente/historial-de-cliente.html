@@ -1,0 +1,55 @@
+<app-menu-atencion></app-menu-atencion>
+
+<div class="formulario-reportes">
+    <h2>Ingresar el DPI/Pasaporte del cliente</h2>
+
+    <form>
+        <div class="campos-fechas">
+            <div class="campo">
+                <label>DPI/Pasaporte:</label>
+                <input [(ngModel)]="dpi" type="text" id="fechaInicio" name="fechaInicio" required>
+            </div>
+        </div>
+        <div class="botones">
+            <button type="button" class="btn-ventas" (click)="consultarHistorial()">Consultar Historial</button>
+        </div>
+
+    </form>
+</div>
+
+
+<div class="reporte-ventas-wrapper">
+    <section class="reporte-ventas-card">
+        <header class="reporte-ventas-header">
+            <h2>Historial de reservaciones de un cliente</h2>
+            <p>Reservaciones realizadas por un cliente específico</p>
+        </header>
+
+        <div *ngIf="activo"  class="reporte-ventas-scroll">
+            <table class="reporte-ventas-table">
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Numero de reservacion</th>
+                        <th>Paquete</th>
+                        <th>Fecha Viaje</th>
+                        <th>Estado</th>
+                        <th>Costo Total</th>
+                    </tr>
+                </thead>
+
+                <tbody *ngFor="let r of reservaciones">
+                    <tr>
+                        <td>{{ r.cliente }}</td>
+                        <td>{{ r.numero_reserva}}</td>
+                        <td>{{ r.paquete }}</td>
+                        <td>{{ r.fecha_viaje }}</td>
+                        <td>{{ r.estado }}</td>
+                        <td>{{ r.costo_total }}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
